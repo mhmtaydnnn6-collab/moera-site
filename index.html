@@ -11,66 +11,60 @@
             box-sizing: border-box;
         }
 
-        html, body {
-            height: 100%;
-            overflow: hidden; /* Ekranın sağa sola veya gereksiz aşağı kaymasını engeller */
-        }
-
+        /* Mobil odaklı ana yapı */
         body {
-            /* Arka plan ayarları */
-            background: url('post.png') no-repeat center center;
-            background-size: cover;
-            /* Masaüstü için sabit tutalım */
-            background-attachment: fixed;
-            
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100vh;
+            height: 100dvh; /* Mobil tarayıcı çubukları için gerçek yükseklik */
             display: flex;
             flex-direction: column;
-            justify-content: flex-end; /* Butonları alta yaslar */
+            justify-content: flex-end; /* İçeriği en alta yasla */
             align-items: center;
             font-family: Arial, sans-serif;
-            height: 100vh;
-            height: 100dvh;
+            
+            /* Arka Plan Ayarları */
+            background-image: url('post.png');
+            background-repeat: no-repeat;
+            background-position: center center; /* Resmi ortala */
+            background-size: cover; /* Resmi ekrana sığdır */
+            background-attachment: scroll; /* Mobilde patlamaması için en kritik ayar */
         }
 
-        /* MOBİL ÖZEL AYAR (En kritik yer burası) */
-        @media (max-width: 768px) {
+        /* Masaüstü (Bilgisayar) için ufak bir dokunuş */
+        @media (min-width: 769px) {
             body {
-                /* iPhone/Android için fixed özelliğini kapatıyoruz, yoksa resim zoom yapar */
-                background-attachment: scroll !important;
-                /* Resmi mobilde biraz daha yukarıdan başlat ki 2026 yazısı yukarı çıksın */
-                background-position: center 15%; 
-            }
-
-            .links-container {
-                /* Mobilde butonları en alttan biraz daha yukarı alıyoruz */
-                margin-bottom: 40px !important; 
+                background-attachment: fixed; /* Bilgisayarda o havalı sabit duruş kalsın */
             }
         }
 
+        /* Buton Kapsayıcısı */
         .links-container {
             display: flex;
             flex-direction: column;
-            gap: 12px;
+            gap: 15px;
             width: 85%;
-            max-width: 320px;
-            /* Butonların o 2026 yazısının üstüne binmemesi için alt boşluk */
-            margin-bottom: 60px; 
+            max-width: 350px;
+            /* Mobilde '2026' yazısından uzak durması için alt boşluk */
+            margin-bottom: 50px; 
             z-index: 10;
         }
 
+        /* Buton Tasarımı */
         .link-card {
-            background: rgba(0, 0, 0, 0.8);
+            background: rgba(0, 0, 0, 0.8); /* Daha okunabilir siyah arka plan */
             border: 1.5px solid white;
-            padding: 14px;
-            border-radius: 4px;
+            padding: 15px;
+            border-radius: 5px;
             text-decoration: none;
             color: white;
             font-weight: bold;
             text-align: center;
             text-transform: uppercase;
-            letter-spacing: 1.5px;
-            font-size: 13px;
-            transition: 0.3s;
+            letter-spacing: 2px;
+            font-size: 14px;
+            transition: 0.3s ease;
         }
 
         .link-card:hover {
@@ -88,3 +82,4 @@
 
 </body>
 </html>
+
