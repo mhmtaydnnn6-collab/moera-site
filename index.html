@@ -2,47 +2,73 @@
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Moera</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body, html {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background-color: #000;
+            font-family: Arial, sans-serif;
         }
 
-        body {
-            /* Görsel isminin post.png veya olduğundan emin ol */
-            background: url('post.png') no-repeat center center fixed;
+        /* VARSAYILAN: BİLGİSAYAR GÖRÜNÜMÜ */
+        .background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('post.png'); /* PC resmi */
+            background-position: center center;
+            background-repeat: no-repeat;
             background-size: cover;
-            height: 100vh;
+            z-index: 1;
+        }
+
+        /* TELEFON GÖRÜNÜMÜ (Ekran 768px'den küçükse) */
+        @media (max-width: 768px) {
+            .background {
+                background-image: url('mobile.png') !important; /* Telefon resmi */
+                background-attachment: scroll;
+            }
+        }
+
+        .footer-links {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            z-index: 10;
+            padding-bottom: 50px;
             display: flex;
             flex-direction: column;
-            justify-content: flex-end; /* Butonları aşağıya iter */
             align-items: center;
-            font-family: Arial, sans-serif;
-            padding-bottom: 10vh; /* Sayfanın en altına yapışmaması için boşluk */
         }
 
         .links-container {
+            width: 85%;
+            max-width: 320px;
             display: flex;
             flex-direction: column;
-            gap: 15px;
-            width: 90%;
-            max-width: 350px;
+            gap: 12px;
         }
 
         .link-card {
             background: rgba(0, 0, 0, 0.7);
-            border: 2px solid white;
-            padding: 2px;
+            border: 2px solid #fff;
+            padding: 15px;
             border-radius: 5px;
             text-decoration: none;
-            color: white;
+            color: #fff;
             font-weight: bold;
             text-align: center;
             text-transform: uppercase;
-            letter-spacing: 2px;
+            letter-spacing: 1.5px;
+            font-size: 13px;
             transition: 0.3s;
         }
 
@@ -54,14 +80,14 @@
 </head>
 <body>
 
-    <div class="links-container">
-        <a href="https://instagram.com/moerahome" class="link-card">INSTAGRAM</a>
-        
-        <a href="mailto:iletisim@moera.com" class="link-card">CONTACT US</a>
+    <div class="background"></div>
+
+    <div class="footer-links">
+        <div class="links-container">
+            <a href="https://instagram.com/moerahome" class="link-card" target="_blank">INSTAGRAM</a>
+            <a href="mailto:iletisim@moera.com" class="link-card">CONTACT US</a>
+        </div>
     </div>
 
 </body>
 </html>
-
-
-
