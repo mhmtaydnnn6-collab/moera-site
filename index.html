@@ -12,16 +12,38 @@
         }
 
         body {
-            /* Görsel isminin post.png veya olduğundan emin ol */
+            /* Görsel isminin post.png olduğundan emin ol */
             background: url('post.png') no-repeat center center fixed;
             background-size: cover;
             height: 100vh;
+            /* Mobil tarayıcı çubukları (Safari/Chrome) için ek yükseklik ayarı */
+            height: 100dvh; 
             display: flex;
             flex-direction: column;
-            justify-content: flex-end; /* Butonları aşağıya iter */
+            justify-content: flex-end;
             align-items: center;
             font-family: Arial, sans-serif;
-            padding-bottom: 10vh; /* Sayfanın en altına yapışmaması için boşluk */
+            padding-bottom: 8vh; /* Butonların 2026 yazısını kapatmaması için ideal boşluk */
+        }
+
+        /* MOBİL CİHAZLAR İÇİN ÖZEL AYARLAR */
+        @media (max-width: 768px) {
+            body {
+                /* iOS cihazlarda arka planın bozulmasını engeller */
+                background-attachment: scroll !important; 
+                background-position: center center;
+            }
+            
+            .links-container {
+                gap: 12px; /* Mobilde buton arası biraz daha daralır */
+                padding: 0 20px; /* Kenarlardan taşma yapmaması için */
+            }
+
+            .link-card {
+                padding: 12px; /* Mobilde daha kolay tıklanması için parmak dostu boyut */
+                font-size: 14px;
+                letter-spacing: 1px;
+            }
         }
 
         .links-container {
@@ -35,7 +57,7 @@
         .link-card {
             background: rgba(0, 0, 0, 0.7);
             border: 2px solid white;
-            padding: 1px;
+            padding: 14px; /* Butonların içi biraz daha dolgun gözüksün */
             border-radius: 5px;
             text-decoration: none;
             color: white;
@@ -55,13 +77,11 @@
 <body>
 
     <div class="links-container">
-        <a href="https://instagram.com/moerahome" class="link-card">INSTAGRAM</a>
-        
+        <a href="https://instagram.com/moerahome" class="link-card" target="_blank">INSTAGRAM</a>
         <a href="mailto:iletisim@moera.com" class="link-card">CONTACT US</a>
     </div>
 
 </body>
-
 </html>
 
 
