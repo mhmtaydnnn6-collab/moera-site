@@ -2,7 +2,7 @@
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Moera</title>
     <style>
         * {
@@ -11,60 +11,65 @@
             box-sizing: border-box;
         }
 
-        body {
-            /* Görsel isminin post.png olduğundan emin ol */
-            background: url('post.png') no-repeat center center fixed;
-            background-size: cover;
-            height: 100vh;
-            /* Mobil tarayıcı çubukları (Safari/Chrome) için ek yükseklik ayarı */
-            height: 100dvh; 
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-            align-items: center;
-            font-family: Arial, sans-serif;
-            padding-bottom: 8vh; /* Butonların 2026 yazısını kapatmaması için ideal boşluk */
+        html, body {
+            height: 100%;
+            overflow: hidden; /* Ekranın sağa sola veya gereksiz aşağı kaymasını engeller */
         }
 
-        /* MOBİL CİHAZLAR İÇİN ÖZEL AYARLAR */
+        body {
+            /* Arka plan ayarları */
+            background: url('post.png') no-repeat center center;
+            background-size: cover;
+            /* Masaüstü için sabit tutalım */
+            background-attachment: fixed;
+            
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end; /* Butonları alta yaslar */
+            align-items: center;
+            font-family: Arial, sans-serif;
+            height: 100vh;
+            height: 100dvh;
+        }
+
+        /* MOBİL ÖZEL AYAR (En kritik yer burası) */
         @media (max-width: 768px) {
             body {
-                /* iOS cihazlarda arka planın bozulmasını engeller */
-                background-attachment: scroll !important; 
-                background-position: center center;
-            }
-            
-            .links-container {
-                gap: 12px; /* Mobilde buton arası biraz daha daralır */
-                padding: 0 20px; /* Kenarlardan taşma yapmaması için */
+                /* iPhone/Android için fixed özelliğini kapatıyoruz, yoksa resim zoom yapar */
+                background-attachment: scroll !important;
+                /* Resmi mobilde biraz daha yukarıdan başlat ki 2026 yazısı yukarı çıksın */
+                background-position: center 15%; 
             }
 
-            .link-card {
-                padding: 12px; /* Mobilde daha kolay tıklanması için parmak dostu boyut */
-                font-size: 14px;
-                letter-spacing: 1px;
+            .links-container {
+                /* Mobilde butonları en alttan biraz daha yukarı alıyoruz */
+                margin-bottom: 40px !important; 
             }
         }
 
         .links-container {
             display: flex;
             flex-direction: column;
-            gap: 15px;
-            width: 90%;
-            max-width: 350px;
+            gap: 12px;
+            width: 85%;
+            max-width: 320px;
+            /* Butonların o 2026 yazısının üstüne binmemesi için alt boşluk */
+            margin-bottom: 60px; 
+            z-index: 10;
         }
 
         .link-card {
-            background: rgba(0, 0, 0, 0.7);
-            border: 2px solid white;
-            padding: 14px; /* Butonların içi biraz daha dolgun gözüksün */
-            border-radius: 5px;
+            background: rgba(0, 0, 0, 0.8);
+            border: 1.5px solid white;
+            padding: 14px;
+            border-radius: 4px;
             text-decoration: none;
             color: white;
             font-weight: bold;
             text-align: center;
             text-transform: uppercase;
-            letter-spacing: 2px;
+            letter-spacing: 1.5px;
+            font-size: 13px;
             transition: 0.3s;
         }
 
@@ -83,5 +88,3 @@
 
 </body>
 </html>
-
-
