@@ -2,93 +2,65 @@
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Moera</title>
     <style>
-        /* Her şeyi sıfırla */
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        
-        body, html {
-            width: 100%;
-            height: 100%;
-            overflow: hidden; /* Sayfa kaymasın, uygulama gibi dursun */
-            background-color: #000;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
-        /* Arka Plan Görseli */
-        .bg-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            /* Senin attığın dosyanın adı post.jpg veya post.png ise ona göre düzelt */
-            background-image: url('post.jpg'); 
-            background-repeat: no-repeat;
-            background-position: center center;
-            background-size: cover; /* Resmi ekrana tam yayar */
-            z-index: 1;
-        }
-
-        /* İçerik Katmanı (Butonlar) */
-        .overlay {
-            position: relative;
-            z-index: 2;
-            width: 100%;
+        body {
+            /* Görsel isminin post.png veya olduğundan emin ol */
+            background: url('post.png') no-repeat center center fixed;
+            background-size: cover;
             height: 100vh;
             display: flex;
             flex-direction: column;
-            justify-content: flex-end; /* Butonları en alta iter */
+            justify-content: flex-end; /* Butonları aşağıya iter */
             align-items: center;
-            padding-bottom: 60px; /* Mobilde butonların alttan yüksekliği */
+            font-family: Arial, sans-serif;
+            padding-bottom: 10vh; /* Sayfanın en altına yapışmaması için boşluk */
         }
 
-        .button-box {
+        .links-container {
             display: flex;
             flex-direction: column;
             gap: 15px;
-            width: 80%;
-            max-width: 300px;
+            width: 90%;
+            max-width: 350px;
         }
 
-        .btn {
-            background: rgba(0, 0, 0, 0.7); /* Arkadaki yazı görünse bile buton okunsun */
-            border: 2px solid #fff;
-            color: #fff;
-            padding: 15px;
-            text-align: center;
+        .link-card {
+            background: rgba(0, 0, 0, 0.7);
+            border: 2px solid white;
+            padding: 16px;
+            border-radius: 5px;
             text-decoration: none;
+            color: white;
             font-weight: bold;
-            font-family: Arial, sans-serif;
-            letter-spacing: 2px;
-            border-radius: 4px;
+            text-align: center;
             text-transform: uppercase;
-            font-size: 14px;
+            letter-spacing: 2px;
+            transition: 0.3s;
         }
 
-        /* Mobil Cihazlar İçin Özel Dokunuş */
-        @media (max-width: 768px) {
-            .bg-container {
-                /* Mobilde resmin sadece orta kısmına odaklan */
-                background-position: center center;
-            }
-            .overlay {
-                padding-bottom: 40px; /* Butonları biraz daha aşağı al */
-            }
+        .link-card:hover {
+            background: white;
+            color: black;
         }
     </style>
 </head>
 <body>
 
-    <div class="bg-container"></div>
-
-    <div class="overlay">
-        <div class="button-box">
-            <a href="https://instagram.com/moerahome" class="btn" target="_blank">INSTAGRAM</a>
-            <a href="mailto:iletisim@moera.com" class="btn">CONTACT US</a>
-        </div>
+    <div class="links-container">
+        <a href="https://instagram.com/moerahome" class="link-card">INSTAGRAM</a>
+        
+        <a href="mailto:iletisim@moera.com" class="link-card">CONTACT US</a>
     </div>
 
 </body>
 </html>
+
 
