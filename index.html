@@ -35,17 +35,23 @@
             }
         }
 
-        .footer-content {
-            position: fixed; bottom: 0; left: 0; width: 100%; z-index: 10;
-            padding-bottom: 30px; /* Alttan sayfa boşluğu */
+        /* ÜST KISIM (SAYAÇ) */
+        .header-content {
+            position: fixed; top: 0; left: 0; width: 100%; z-index: 10;
+            padding-top: 30px; 
             display: flex; flex-direction: column; align-items: center;
         }
 
-        /* GERİ SAYIM STİLİ - Butonların hemen üstüne alındı */
+        /* ALT KISIM (BUTONLAR) */
+        .footer-content {
+            position: fixed; bottom: 0; left: 0; width: 100%; z-index: 10;
+            padding-bottom: 30px; 
+            display: flex; flex-direction: column; align-items: center;
+        }
+
         #countdown {
             display: flex;
             gap: 10px;
-            margin-bottom: 15px; /* Butonlarla arasındaki boşluğu azalttım */
             color: white;
             text-align: center;
         }
@@ -62,7 +68,7 @@
         .countdown-number {
             display: block;
             font-size: 22px;
-            font-weight: 700; /* Rakamlar biraz daha belirgin */
+            font-weight: 700; 
             letter-spacing: 1px;
         }
 
@@ -72,7 +78,7 @@
             text-transform: uppercase;
             opacity: 0.8;
             margin-top: 3px;
-            font-weight: 500; /* Lato Medium */
+            font-weight: 500; 
         }
 
         .links-container { width: 85%; max-width: 320px; display: flex; flex-direction: column; gap: 10px; }
@@ -84,7 +90,7 @@
             border-radius: 4px; 
             text-decoration: none; 
             color: #fff; 
-            font-weight: 500; /* Lato Medium yapıldı */
+            font-weight: 500; 
             text-align: center; 
             text-transform: uppercase; 
             letter-spacing: 2px;
@@ -98,6 +104,7 @@
             #countdown { gap: 6px; }
             .countdown-item { min-width: 52px; padding: 6px; }
             .countdown-number { font-size: 18px; }
+            .header-content { padding-top: 20px; }
             .footer-content { padding-bottom: 25px; }
         }
     </style>
@@ -106,7 +113,7 @@
 
     <div class="background"></div>
 
-    <div class="footer-content">
+    <div class="header-content">
         <div id="countdown">
             <div class="countdown-item">
                 <span class="countdown-number" id="days">00</span>
@@ -125,7 +132,9 @@
                 <span class="countdown-label">SN</span>
             </div>
         </div>
+    </div>
 
+    <div class="footer-content">
         <div class="links-container">
             <a href="https://instagram.com/moerahome" class="link-card" target="_blank">INSTAGRAM</a>
             <a href="mailto:iletisim@moera.com" class="link-card">CONTACT US</a>
@@ -133,13 +142,17 @@
     </div>
 
     <script>
-        // Hedef tarih: Şu andan itibaren 25 gün sonrası
-        const countdownDate = new Date();
-        countdownDate.setDate(countdownDate.getDate() + 25);
+        // HEDEF TARİH: 27 MART 2026
+        const countdownDate = new Date("March 27, 2026 00:00:00").getTime();
 
         function updateCountdown() {
             const now = new Date().getTime();
             const distance = countdownDate - now;
+
+            if (distance < 0) {
+                document.getElementById("countdown").innerHTML = "<p style='color:white; font-weight:700;'>MOERA AÇILDI!</p>";
+                return;
+            }
 
             const days = Math.floor(distance / (1000 * 60 * 60 * 24));
             const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
@@ -152,8 +165,8 @@
             document.getElementById("seconds").innerText = seconds.toString().padStart(2, '0');
         }
 
-            setInterval(updateCountdown, 1000);
-            updateCountdown();
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
     </script>
 </body>
 </html>
