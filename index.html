@@ -4,32 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Moera</title>
+    <link rel="icon" type="image/png" href="favicon.png?v=1">
     
-    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;500;700&display=swap" rel="stylesheet">
 
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
         body, html {
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            background-color: #000;
-            font-family: Arial, sans-serif;
+            width: 100%; height: 100%; overflow: hidden;
+            background-color: #000; 
+            font-family: 'Lato', sans-serif;
         }
 
-        /* ARKA PLAN KATMANI */
         .background {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            /* BİLGİSAYAR İÇİN VARSAYILAN GÖRSEL */
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background-image: url('post.png'); 
             background-position: center center;
             background-repeat: no-repeat;
@@ -37,54 +28,77 @@
             z-index: 1;
         }
 
-        /* TELEFON İÇİN AYRI GÖRSEL AYARI */
         @media (max-width: 768px) {
             .background {
-                /* TELEFON İÇİN SENİN HAZIRLADIĞIN DİKEY GÖRSEL */
                 background-image: url('mobile.png') !important;
-                background-attachment: scroll;
+                background-attachment: scroll !important;
             }
         }
 
-        /* BUTONLARIN OLDUĞU KATMAN */
-        .footer-links {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            z-index: 10;
-            padding-bottom: 50px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+        .footer-content {
+            position: fixed; bottom: 0; left: 0; width: 100%; z-index: 10;
+            padding-bottom: 30px; /* Alttan sayfa boşluğu */
+            display: flex; flex-direction: column; align-items: center;
         }
 
-        .links-container {
-            width: 85%;
-            max-width: 320px;
+        /* GERİ SAYIM STİLİ - Butonların hemen üstüne alındı */
+        #countdown {
             display: flex;
-            flex-direction: column;
-            gap: 12px;
+            gap: 10px;
+            margin-bottom: 15px; /* Butonlarla arasındaki boşluğu azalttım */
+            color: white;
+            text-align: center;
         }
+
+        .countdown-item {
+            background: rgba(0, 0, 0, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 8px;
+            min-width: 60px;
+            border-radius: 4px;
+            backdrop-filter: blur(4px);
+        }
+
+        .countdown-number {
+            display: block;
+            font-size: 22px;
+            font-weight: 700; /* Rakamlar biraz daha belirgin */
+            letter-spacing: 1px;
+        }
+
+        .countdown-label {
+            display: block;
+            font-size: 9px;
+            text-transform: uppercase;
+            opacity: 0.8;
+            margin-top: 3px;
+            font-weight: 500; /* Lato Medium */
+        }
+
+        .links-container { width: 85%; max-width: 320px; display: flex; flex-direction: column; gap: 10px; }
 
         .link-card {
-            background: rgba(0, 0, 0, 0.7);
-            border: 2px solid #fff;
-            padding: 4px;
-            border-radius: 5px;
-            text-decoration: none;
-            color: #fff;
-            font-weight: bold;
-            text-align: center;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            font-size: 13px;
+            background: rgba(0, 0, 0, 0.7); 
+            border: 1.5px solid #fff; 
+            padding: 14px;
+            border-radius: 4px; 
+            text-decoration: none; 
+            color: #fff; 
+            font-weight: 500; /* Lato Medium yapıldı */
+            text-align: center; 
+            text-transform: uppercase; 
+            letter-spacing: 2px;
+            font-size: 13px; 
             transition: 0.3s;
         }
 
-        .link-card:hover {
-            background: white;
-            color: black;
+        .link-card:hover { background: white; color: black; }
+
+        @media (max-width: 480px) {
+            #countdown { gap: 6px; }
+            .countdown-item { min-width: 52px; padding: 6px; }
+            .countdown-number { font-size: 18px; }
+            .footer-content { padding-bottom: 25px; }
         }
     </style>
 </head>
@@ -92,12 +106,54 @@
 
     <div class="background"></div>
 
-    <div class="footer-links">
+    <div class="footer-content">
+        <div id="countdown">
+            <div class="countdown-item">
+                <span class="countdown-number" id="days">00</span>
+                <span class="countdown-label">GÜN</span>
+            </div>
+            <div class="countdown-item">
+                <span class="countdown-number" id="hours">00</span>
+                <span class="countdown-label">SAAT</span>
+            </div>
+            <div class="countdown-item">
+                <span class="countdown-number" id="minutes">00</span>
+                <span class="countdown-label">DK</span>
+            </div>
+            <div class="countdown-item">
+                <span class="countdown-number" id="seconds">00</span>
+                <span class="countdown-label">SN</span>
+            </div>
+        </div>
+
         <div class="links-container">
             <a href="https://instagram.com/moerahome" class="link-card" target="_blank">INSTAGRAM</a>
             <a href="mailto:iletisim@moera.com" class="link-card">CONTACT US</a>
         </div>
     </div>
 
+    <script>
+        // Hedef tarih: Şu andan itibaren 25 gün sonrası
+        const countdownDate = new Date();
+        countdownDate.setDate(countdownDate.getDate() + 25);
+
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const distance = countdownDate - now;
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById("days").innerText = days.toString().padStart(2, '0');
+            document.getElementById("hours").innerText = hours.toString().padStart(2, '0');
+            document.getElementById("minutes").innerText = minutes.toString().padStart(2, '0');
+            document.getElementById("seconds").innerText = seconds.toString().padStart(2, '0');
+        }
+
+            setInterval(updateCountdown, 1000);
+            updateCountdown();
+    </script>
 </body>
 </html>
