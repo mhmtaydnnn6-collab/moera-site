@@ -1,6 +1,14 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-P57TV9S7NT"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-P57TV9S7NT');
+    </script>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Moera</title>
@@ -87,7 +95,7 @@
         /* BİLDİRİM BUTONU */
         .notification-btn {
             position: fixed; 
-            bottom: 30px; /* Bilgisayarda sol alt */
+            bottom: 30px; 
             left: 30px;
             width: 50px; 
             height: 50px;
@@ -106,10 +114,9 @@
             border-color: rgba(255, 255, 255, 0.8);
         }
 
-        /* SADECE MOBİL İÇİN SAĞ ÜST DÜZENLEMESİ */
         @media (max-width: 768px) {
             .notification-btn { 
-                top: 20px; /* Mobilde sağ üst */
+                top: 20px; 
                 right: 20px; 
                 bottom: auto; 
                 left: auto;
