@@ -35,7 +35,6 @@
             }
         }
 
-        /* SAYAÇ KONUMU */
         .header-content {
             position: fixed; left: 0; width: 100%; z-index: 10;
             display: flex; flex-direction: column; align-items: center;
@@ -85,10 +84,13 @@
 
         .link-card:hover { background: white; color: black; }
 
-        /* BİLDİRİM BUTONU STİLİ - YENİ EKLENDİ */
+        /* BİLDİRİM BUTONU */
         .notification-btn {
-            position: fixed; bottom: 30px; left: 30px;
-            width: 50px; height: 50px;
+            position: fixed; 
+            bottom: 30px; /* Bilgisayarda sol alt */
+            left: 30px;
+            width: 50px; 
+            height: 50px;
             background-color: rgba(255, 255, 255, 0.1);
             border: 1px solid rgba(255, 255, 255, 0.3);
             border-radius: 50%;
@@ -100,12 +102,20 @@
 
         .notification-btn:hover {
             background-color: rgba(255, 255, 255, 0.2);
-            transform: translateY(-5px);
+            transform: scale(1.1);
             border-color: rgba(255, 255, 255, 0.8);
         }
 
+        /* SADECE MOBİL İÇİN SAĞ ÜST DÜZENLEMESİ */
         @media (max-width: 768px) {
-            .notification-btn { bottom: 20px; left: 20px; width: 45px; height: 45px; }
+            .notification-btn { 
+                top: 20px; /* Mobilde sağ üst */
+                right: 20px; 
+                bottom: auto; 
+                left: auto;
+                width: 45px; 
+                height: 45px; 
+            }
             #countdown { gap: 8px; }
             .countdown-item { min-width: 58px; padding: 8px; }
             .countdown-number { font-size: 20px; }
@@ -116,6 +126,13 @@
 <body>
 
     <div class="background"></div>
+
+    <a href="/notification" class="notification-btn" title="Bildirimler">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+            <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+        </svg>
+    </a>
 
     <div class="header-content">
         <div id="countdown">
@@ -144,13 +161,6 @@
             <a href="mailto:iletisim@moera.com" class="link-card">CONTACT US</a>
         </div>
     </div>
-
-    <a href="/notification" class="notification-btn" title="Bildirimler">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
-            <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
-        </svg>
-    </a>
 
     <script>
         const countdownDate = new Date("March 27, 2026 00:00:00").getTime();
