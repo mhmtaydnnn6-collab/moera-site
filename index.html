@@ -92,41 +92,38 @@
 
         .link-card:hover { background: white; color: black; }
 
-        /* BİLDİRİM BUTONU */
+        /* BİLDİRİM BUTONU (SOL ALT) */
         .notification-btn {
-            position: fixed; 
-            bottom: 30px; 
-            left: 30px;
-            width: 50px; 
-            height: 50px;
-            background-color: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            border-radius: 50%;
+            position: fixed; bottom: 30px; left: 30px;
+            width: 50px; height: 50px; background-color: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3); border-radius: 50%;
             display: flex; align-items: center; justify-content: center;
-            cursor: pointer; transition: all 0.3s ease;
-            backdrop-filter: blur(5px); z-index: 1000;
-            text-decoration: none;
+            cursor: pointer; transition: all 0.3s ease; backdrop-filter: blur(5px); z-index: 1000;
         }
 
-        .notification-btn:hover {
-            background-color: rgba(255, 255, 255, 0.2);
-            transform: scale(1.1);
-            border-color: rgba(255, 255, 255, 0.8);
+        /* SOSYAL İKONLAR (SAĞ ALT) */
+        .social-icons {
+            position: fixed; bottom: 30px; right: 30px;
+            display: flex; flex-direction: column; gap: 15px; z-index: 1000;
+        }
+        .social-icon-btn {
+            width: 50px; height: 50px; background-color: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3); border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            cursor: pointer; transition: all 0.3s ease; backdrop-filter: blur(5px);
+        }
+
+        .notification-btn:hover, .social-icon-btn:hover {
+            background-color: rgba(255, 255, 255, 0.2); transform: scale(1.1); border-color: rgba(255, 255, 255, 0.8);
         }
 
         @media (max-width: 768px) {
-            .notification-btn { 
-                top: 20px; 
-                right: 20px; 
-                bottom: auto; 
-                left: auto;
-                width: 45px; 
-                height: 45px; 
-            }
+            .notification-btn { top: 20px; right: 20px; bottom: auto; left: auto; width: 45px; height: 45px; }
+            .social-icons { bottom: 20px; right: 20px; gap: 10px; }
+            .social-icon-btn { width: 45px; height: 45px; }
             #countdown { gap: 8px; }
             .countdown-item { min-width: 58px; padding: 8px; }
             .countdown-number { font-size: 20px; }
-            .footer-content { padding-bottom: 25px; }
         }
     </style>
 </head>
@@ -141,57 +138,41 @@
         </svg>
     </a>
 
+    <div class="social-icons">
+        <a href="https://instagram.com/moerahome" class="social-icon-btn" target="_blank">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+        </a>
+        <a href="https://wa.me/905418892202" class="social-icon-btn" target="_blank">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+        </a>
+    </div>
+
     <div class="header-content">
         <div id="countdown">
-            <div class="countdown-item">
-                <span class="countdown-number" id="days">00</span>
-                <span class="countdown-label">GÜN</span>
-            </div>
-            <div class="countdown-item">
-                <span class="countdown-number" id="hours">00</span>
-                <span class="countdown-label">SAAT</span>
-            </div>
-            <div class="countdown-item">
-                <span class="countdown-number" id="minutes">00</span>
-                <span class="countdown-label">DK</span>
-            </div>
-            <div class="countdown-item">
-                <span class="countdown-number" id="seconds">00</span>
-                <span class="countdown-label">SN</span>
-            </div>
+            <div class="countdown-item"><span class="countdown-number" id="days">00</span><span class="countdown-label">GÜN</span></div>
+            <div class="countdown-item"><span class="countdown-number" id="hours">00</span><span class="countdown-label">SAAT</span></div>
+            <div class="countdown-item"><span class="countdown-number" id="minutes">00</span><span class="countdown-label">DK</span></div>
+            <div class="countdown-item"><span class="countdown-number" id="seconds">00</span><span class="countdown-label">SN</span></div>
         </div>
     </div>
 
     <div class="footer-content">
         <div class="links-container">
-            <a href="https://instagram.com/moerahome" class="link-card" target="_blank">INSTAGRAM</a>
-            <a href="mailto:iletisim@moera.com" class="link-card">CONTACT US</a>
+            <a href="/about" class="link-card">ABOUT US</a>
         </div>
     </div>
 
     <script>
         const countdownDate = new Date("March 27, 2026 00:00:00").getTime();
-
         function updateCountdown() {
             const now = new Date().getTime();
             const distance = countdownDate - now;
-
-            if (distance < 0) {
-                document.getElementById("countdown").innerHTML = "<p style='color:white; font-weight:700;'>MOERA AÇILDI!</p>";
-                return;
-            }
-
-            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-            document.getElementById("days").innerText = days.toString().padStart(2, '0');
-            document.getElementById("hours").innerText = hours.toString().padStart(2, '0');
-            document.getElementById("minutes").innerText = minutes.toString().padStart(2, '0');
-            document.getElementById("seconds").innerText = seconds.toString().padStart(2, '0');
+            if (distance < 0) { document.getElementById("countdown").innerHTML = "<p style='color:white; font-weight:700;'>MOERA AÇILDI!</p>"; return; }
+            document.getElementById("days").innerText = Math.floor(distance / (1000 * 60 * 60 * 24)).toString().padStart(2, '0');
+            document.getElementById("hours").innerText = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)).toString().padStart(2, '0');
+            document.getElementById("minutes").innerText = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)).toString().padStart(2, '0');
+            document.getElementById("seconds").innerText = Math.floor((distance % (1000 * 60)) / 1000).toString().padStart(2, '0');
         }
-
         setInterval(updateCountdown, 1000);
         updateCountdown();
     </script>
