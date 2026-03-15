@@ -10,7 +10,7 @@
     </script>
 
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Moera</title>
     <link rel="icon" type="image/png" href="favicon.png?v=1">
     
@@ -39,7 +39,6 @@
         @media (max-width: 768px) {
             .background {
                 background-image: url('mobile.png') !important;
-                background-attachment: scroll !important;
             }
         }
 
@@ -92,7 +91,6 @@
 
         .link-card:hover { background: white; color: black; }
 
-        /* BİLDİRİM BUTONU (SOL ALT) */
         .notification-btn {
             position: fixed; bottom: 30px; left: 30px;
             width: 50px; height: 50px; background-color: rgba(255, 255, 255, 0.1);
@@ -101,7 +99,6 @@
             cursor: pointer; transition: all 0.3s ease; backdrop-filter: blur(5px); z-index: 1000;
         }
 
-        /* SOSYAL İKONLAR (SAĞ ALT) */
         .social-icons {
             position: fixed; bottom: 30px; right: 30px;
             display: flex; flex-direction: column; gap: 15px; z-index: 1000;
@@ -118,12 +115,14 @@
         }
 
         @media (max-width: 768px) {
-            .notification-btn { top: 20px; right: 20px; bottom: auto; left: auto; width: 45px; height: 45px; }
+            /* Bildirim butonu SOL ÜSTE alındı */
+            .notification-btn { top: 20px; left: 20px; bottom: auto; right: auto; width: 45px; height: 45px; }
+            /* Sosyal ikonlar SAĞ ALT'ta kaldı */
             .social-icons { bottom: 20px; right: 20px; gap: 10px; }
             .social-icon-btn { width: 45px; height: 45px; }
             #countdown { gap: 8px; }
-            .countdown-item { min-width: 58px; padding: 8px; }
-            .countdown-number { font-size: 20px; }
+            .countdown-item { min-width: 55px; padding: 8px; }
+            .countdown-number { font-size: 18px; }
         }
     </style>
 </head>
@@ -142,7 +141,7 @@
         <a href="https://instagram.com/moerahome" class="social-icon-btn" target="_blank">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
         </a>
-        <a href="https://wa.me/905418892202" class="social-icon-btn" target="_blank">
+        <a href="https://wa.me/905XXXXXXXXX" class="social-icon-btn" target="_blank">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
         </a>
     </div>
