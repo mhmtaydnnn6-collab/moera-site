@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Moera | Modern Lüks</title>
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;500&display=swap" rel="stylesheet">
+    <title>Moera | Modern Luks</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400&display=swap" rel="stylesheet">
     
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -28,10 +28,10 @@
             left: 0;
             width: 100%;
             z-index: 1000;
-            padding: 20px;
+            background-color: #000;
         }
 
-        .header-container img { width: 120px; display: block; margin: 0 auto; }
+        .header-container img { width: 100%; display: block; }
 
         .section {
             width: 100%;
@@ -45,13 +45,11 @@
 
         .black-bg { background-color: #000; }
 
-        /* Yazı alanı - Havalı dokunuşlar */
+        /* Yazı animasyonu */
         .content-text {
             max-width: 700px;
             text-align: center;
             line-height: 1.8;
-            letter-spacing: 0.5px;
-            /* Yavaş ve yumuşak giriş */
             animation: elegantFade 2s ease-in-out forwards;
         }
 
@@ -62,16 +60,19 @@
 
         .content-text p { 
             font-size: 1.4rem; 
-            font-weight: 300; /* İnce, zarif font ağırlığı */
+            font-weight: 300;
             color: #e0e0e0;
         }
 
+        /* Fotoya geçiş efekti */
         .photo-bg {
             background-image: url('moeraarka.png'); 
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
             background-color: #000;
+            /* Fotoğraf bölümü için yumuşak geçiş */
+            transition: opacity 1.5s ease-in-out;
         }
 
         @media (max-width: 768px) {
@@ -88,7 +89,7 @@
 
     <div class="section black-bg">
         <div class="content-text">
-            <p>Moera olarak, yapılmayanı yapma tutkusuyla lüksü modern zamanın ruhuyla harmanlıyoruz. Tasarımlarımızı sadece birer mobilya olarak değil, yaşam alanlarınıza ruh katacak ve anılarınıza eşlik edecek zamansız parçalar olarak kurguluyoruz. Her detayına kendinden bir parça bırakan ekibimizle, estetiği en saf ve en şık haliyle evinize taşıyoruz.</p>
+            <p>Moera olarak, yapilmayani yapma tutkusuyla luksu modern zamanin ruhuyla harmanliyoruz. Tasarimlarimizi sadece birer mobilya olarak degil, yasam alanlariniza ruh katacak ve anilariniza eslik edecek zamansiz parcalar olarak kurguluyoruz. Her detayina kendinden bir parca birakan ekibimizle, estetigi en saf ve en sik haliyle evinize tasiyoruz.</p>
         </div>
     </div>
 
