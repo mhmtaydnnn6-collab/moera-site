@@ -6,41 +6,76 @@
     <title>About | Moera</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { background-color: #000; color: #fff; overflow-x: hidden; }
-
-        /* Sabit Header Görseli */
-        .header-container {
-            position: fixed; top: 0; left: 0; width: 100%; height: 80px;
+        
+        body, html {
+            height: 100%;
             background-color: #000;
-            display: flex; justify-content: center; align-items: center;
+            color: #fff;
+            font-family: sans-serif;
+            overflow-y: scroll;
+            /* Sert geçişler için scroll snap */
+            scroll-snap-type: y mandatory;
+        }
+
+        /* Sabit Header */
+        .header-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
             z-index: 1000;
-            border-bottom: 1px solid #222;
         }
 
         .header-container img {
-            max-height: 50px; /* Görseli header içine sığdırıyoruz */
-            object-fit: contain;
+            width: 100%;
+            display: block;
         }
 
-        /* İçerik Bölgesi (Header'ın altına kaymaması için boşluk) */
-        main { margin-top: 80px; }
-
+        /* İçerik Bölümleri */
         .section {
-            width: 100%; min-height: 100vh;
-            background-color: #000;
+            width: 100%;
+            min-height: 100vh;
+            scroll-snap-align: start;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
+
+        /* Siyah alanlar */
+        .black-bg { background-color: #000; }
+
+        /* Görsel alanlar */
+        .image-bg {
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        /* Örnek fotoğraf alanları (Foto isimlerini buraya girebilirsin) */
+        .photo1 { background-image: url('foto1.jpg'); }
+        .photo2 { background-image: url('foto2.jpg'); }
     </style>
 </head>
 <body>
 
-    <header class="header-container">
-        <img src="header.png" alt="Moera Header">
-    </header>
+    <div class="header-container">
+        <img src="header.png" alt="Header">
+    </div>
 
-    <main>
-        <div class="section">
-            </div>
-    </main>
+    <div class="section black-bg">
+        </div>
+
+    <div class="section image-bg photo1">
+        </div>
+
+    <div class="section black-bg">
+        </div>
+
+    <div class="section image-bg photo2">
+        </div>
+
+    <div class="section black-bg">
+        </div>
 
 </body>
 </html>
