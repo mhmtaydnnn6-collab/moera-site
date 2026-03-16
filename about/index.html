@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About | Moera</title>
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@500&display=swap" rel="stylesheet">
+    <title>Moera | Modern Lüks</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;500&display=swap" rel="stylesheet">
     
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -13,7 +13,6 @@
             height: 100%;
             background-color: #000;
             color: #fff;
-            /* Lato Medium fontunu tanımladık */
             font-family: 'Lato', sans-serif;
             overflow-y: scroll;
             -ms-overflow-style: none;  
@@ -29,9 +28,10 @@
             left: 0;
             width: 100%;
             z-index: 1000;
+            padding: 20px;
         }
 
-        .header-container img { width: 100%; display: block; }
+        .header-container img { width: 120px; display: block; margin: 0 auto; }
 
         .section {
             width: 100%;
@@ -40,22 +40,30 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 20px;
+            padding: 40px;
         }
 
         .black-bg { background-color: #000; }
 
-        /* Yazı alanı - PC ve Mobil dengesi */
+        /* Yazı alanı - Havalı dokunuşlar */
         .content-text {
-            max-width: 800px;
+            max-width: 700px;
             text-align: center;
-            line-height: 1.6;
+            line-height: 1.8;
+            letter-spacing: 0.5px;
+            /* Yavaş ve yumuşak giriş */
+            animation: elegantFade 2s ease-in-out forwards;
+        }
+
+        @keyframes elegantFade {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .content-text p { 
-            font-size: 1.5rem; 
-            font-weight: 500; /* Medium ağırlığı */
-            color: #fff;
+            font-size: 1.4rem; 
+            font-weight: 300; /* İnce, zarif font ağırlığı */
+            color: #e0e0e0;
         }
 
         .photo-bg {
@@ -66,7 +74,6 @@
             background-color: #000;
         }
 
-        /* Mobil uyum ayarları */
         @media (max-width: 768px) {
             .content-text p { font-size: 1.1rem; }
             .photo-bg { background-size: contain; }
@@ -76,7 +83,7 @@
 <body>
 
     <div class="header-container">
-        <img src="header.png" alt="Header">
+        <img src="header.png" alt="Moera Logo">
     </div>
 
     <div class="section black-bg">
