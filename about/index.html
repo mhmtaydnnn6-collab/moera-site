@@ -22,7 +22,6 @@
 
         body::-webkit-scrollbar { display: none; }
 
-        /* Sabit Header ve Link */
         .header-container {
             position: fixed;
             top: 0;
@@ -33,16 +32,8 @@
             backdrop-filter: blur(10px);
         }
 
-        .header-container a {
-            display: block;
-            width: 100%;
-            text-decoration: none;
-        }
-
-        .header-container img { 
-            width: 100%; 
-            display: block; 
-        }
+        .header-container a { display: block; width: 100%; }
+        .header-container img { width: 100%; display: block; }
 
         .section {
             width: 100%;
@@ -52,77 +43,72 @@
             align-items: center;
             justify-content: center;
             position: relative;
-            overflow: hidden;
         }
 
-        /* Yazı Alanı ve Oklar */
+        /* Metin ve Belirgin Oklar */
         .content-wrapper {
             display: flex;
             align-items: center;
-            gap: 30px;
-            max-width: 1100px;
-            padding: 0 40px;
+            gap: 40px;
+            max-width: 1200px;
+            padding: 0 20px;
         }
 
         .content-text {
             text-align: center;
             line-height: 1.8;
-            animation: softEntrance 2.5s ease-out forwards;
+            flex: 1;
         }
 
         .content-text p { 
             font-family: 'Cormorant Garamond', serif;
-            font-size: 1.8rem; 
+            font-size: 2rem; 
             font-weight: 300;
-            letter-spacing: 0.02em;
-            color: rgba(255,255,255,0.9);
+            color: #fff;
         }
 
-        /* Minimalist Oklar */
+        /* Daha Belirgin Premium Oklar */
         .premium-arrow {
-            width: 1px;
-            height: 60px;
-            background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.5), transparent);
+            width: 2px;
+            height: 100px;
+            background: linear-gradient(to bottom, transparent, #fff, transparent);
             position: relative;
-            opacity: 0.4;
+            box-shadow: 0 0 10px rgba(255,255,255,0.3);
         }
 
         .premium-arrow::after {
             content: '';
             position: absolute;
-            bottom: 0;
-            left: -2px;
-            width: 5px;
-            height: 5px;
-            border-right: 1px solid #fff;
-            border-bottom: 1px solid #fff;
+            bottom: -5px;
+            left: -4px;
+            width: 10px;
+            height: 10px;
+            border-right: 2px solid #fff;
+            border-bottom: 2px solid #fff;
             transform: rotate(45deg);
         }
 
-        @keyframes softEntrance {
-            from { opacity: 0; transform: scale(0.98) translateY(10px); }
-            to { opacity: 1; transform: scale(1) translateY(0); }
-        }
-
-        /* Fotoğraf Bölümü ve Scroll Animasyonu */
+        /* Fotoğraf Bölümü ve Animasyon */
         .photo-bg {
             background-image: url('moeraarka.png'); 
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            transition: transform 1.5s cubic-bezier(0.25, 1, 0.5, 1), filter 1.5s ease;
-            filter: brightness(0.7) scale(1.1);
+            opacity: 0;
+            transform: scale(1.1);
+            transition: all 1.5s cubic-bezier(0.2, 1, 0.3, 1);
         }
 
-        /* Scroll ile bu bölüme gelince tetiklenecek efekt */
-        .section:nth-of-type(2).photo-bg {
-            filter: brightness(1) scale(1);
+        /* Animasyon Tetiklendiğinde */
+        .photo-bg.reveal {
+            opacity: 1;
+            transform: scale(1);
         }
 
         @media (max-width: 768px) {
-            .content-wrapper { flex-direction: column; gap: 15px; }
-            .content-text p { font-size: 1.2rem; }
-            .premium-arrow { display: none; } /* Mobilde sadelik için okları gizle */
+            .content-wrapper { flex-direction: column; }
+            .content-text p { font-size: 1.3rem; }
+            .premium-arrow { height: 60px; width: 1px; }
             .photo-bg { background-size: contain; }
         }
     </style>
@@ -145,9 +131,26 @@
         </div>
     </div>
 
-    <div class="section photo-bg"></div>
+    <div class="section photo-bg" id="photoSection"></div>
 
     <div class="section"></div>
+
+    <script>
+        // Scroll takibi yaparak animasyonu her girişte tetikleme
+        const photoSection = document.getElementById('photoSection');
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    photoSection.classList.add('reveal');
+                } else {
+                    photoSection.classList.remove('reveal'); // Bölümden çıkınca animasyonu sıfırla
+                }
+            });
+        }, { threshold: 0.5 }); // Bölümün yarısı görünce başla
+
+        observer.observe(photoSection);
+    </script>
 
 </body>
 </html>
