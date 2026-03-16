@@ -6,44 +6,40 @@
     <title>About | Moera</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { background-color: #000; color: #fff; font-family: sans-serif; overflow-x: hidden; }
+        body { background-color: #000; color: #fff; overflow-x: hidden; }
 
-        /* Sabit Header */
-        header {
+        /* Sabit Header Görseli */
+        .header-container {
             position: fixed; top: 0; left: 0; width: 100%; height: 80px;
-            background-color: #000; /* Düz siyah */
-            display: flex; align-items: center; justify-content: space-between;
-            padding: 0 40px; z-index: 1000;
+            background-color: #000;
+            display: flex; justify-content: center; align-items: center;
+            z-index: 1000;
             border-bottom: 1px solid #222;
+        }
+
+        .header-container img {
+            max-height: 50px; /* Görseli header içine sığdırıyoruz */
+            object-fit: contain;
         }
 
         /* İçerik Bölgesi (Header'ın altına kaymaması için boşluk) */
         main { margin-top: 80px; }
 
-        /* Bölümler (Siyah arka planlı alanlar) */
         .section {
             width: 100%; min-height: 100vh;
             background-color: #000;
-            display: flex; align-items: center; justify-content: center;
-        }
-
-        @media (max-width: 768px) {
-            header { padding: 0 20px; }
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <div class="logo">MOERA</div>
-        <nav>
-            </nav>
+    <header class="header-container">
+        <img src="header.png" alt="Moera Header">
     </header>
 
     <main>
         <div class="section">
-            <p>İçerik buraya gelecek...</p>
-        </div>
+            </div>
     </main>
 
 </body>
