@@ -13,14 +13,16 @@
             color: #fff;
             font-family: sans-serif;
             overflow-y: scroll;
-            /* Scrollbar gizleme  */
+            /* Scrollbar gizleme */
             -ms-overflow-style: none;  
             scrollbar-width: none;     
             scroll-snap-type: y mandatory;
         }
 
-        body::-webkit-scrollbar { display: none; } /*  */
+        /* Tarayıcı scrollbar gizleme */
+        body::-webkit-scrollbar { display: none; }
 
+        /* Sabit Header */
         .header-container {
             position: fixed;
             top: 0;
@@ -31,6 +33,7 @@
 
         .header-container img { width: 100%; display: block; }
 
+        /* Bölüm ayarları */
         .section {
             width: 100%;
             min-height: 100vh;
@@ -42,16 +45,16 @@
 
         .black-bg { background-color: #000; }
 
-        /* Mobil uyumlu görsel alanı  */
+        /* Fotoğraf ayarları */
         .photo-bg {
-            background-image: url('moeraarka.jpg');
-            background-size: cover; /* Masaüstü için tam kaplama */
+            background-image: url('moeraarka.png'); 
+            background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
             background-color: #000;
         }
 
-        /* Mobilde ekran dikey olduğu için sığdır  */
+        /* Mobil için görseli koruma */
         @media (max-width: 768px) {
             .photo-bg {
                 background-size: contain; 
@@ -65,11 +68,11 @@
         <img src="header.png" alt="Header">
     </div>
 
-    <div class="section black-bg"></div>
+    <div class="section black-bg">&nbsp;</div>
 
-    <div class="section photo-bg"></div>
+    <div class="section photo-bg">&nbsp;</div>
 
-    <div class="section black-bg"></div>
+    <div class="section black-bg">&nbsp;</div>
 
 </body>
 </html>
