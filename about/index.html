@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About | Moera</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@500&display=swap" rel="stylesheet">
+    
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
@@ -11,18 +13,16 @@
             height: 100%;
             background-color: #000;
             color: #fff;
-            font-family: sans-serif;
+            /* Lato Medium fontunu tanımladık */
+            font-family: 'Lato', sans-serif;
             overflow-y: scroll;
-            /* Scrollbar gizleme */
             -ms-overflow-style: none;  
             scrollbar-width: none;     
             scroll-snap-type: y mandatory;
         }
 
-        /* Tarayıcı scrollbar gizleme */
         body::-webkit-scrollbar { display: none; }
 
-        /* Sabit Header */
         .header-container {
             position: fixed;
             top: 0;
@@ -33,7 +33,6 @@
 
         .header-container img { width: 100%; display: block; }
 
-        /* Bölüm ayarları */
         .section {
             width: 100%;
             min-height: 100vh;
@@ -41,11 +40,24 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            padding: 20px;
         }
 
         .black-bg { background-color: #000; }
 
-        /* Fotoğraf ayarları */
+        /* Yazı alanı - PC ve Mobil dengesi */
+        .content-text {
+            max-width: 800px;
+            text-align: center;
+            line-height: 1.6;
+        }
+
+        .content-text p { 
+            font-size: 1.5rem; 
+            font-weight: 500; /* Medium ağırlığı */
+            color: #fff;
+        }
+
         .photo-bg {
             background-image: url('moeraarka.png'); 
             background-size: cover;
@@ -54,11 +66,10 @@
             background-color: #000;
         }
 
-        /* Mobil için görseli koruma */
+        /* Mobil uyum ayarları */
         @media (max-width: 768px) {
-            .photo-bg {
-                background-size: contain; 
-            }
+            .content-text p { font-size: 1.1rem; }
+            .photo-bg { background-size: contain; }
         }
     </style>
 </head>
@@ -68,11 +79,15 @@
         <img src="header.png" alt="Header">
     </div>
 
-    <div class="section black-bg">&nbsp;</div>
+    <div class="section black-bg">
+        <div class="content-text">
+            <p>Moera olarak, yapılmayanı yapma tutkusuyla lüksü modern zamanın ruhuyla harmanlıyoruz. Tasarımlarımızı sadece birer mobilya olarak değil, yaşam alanlarınıza ruh katacak ve anılarınıza eşlik edecek zamansız parçalar olarak kurguluyoruz. Her detayına kendinden bir parça bırakan ekibimizle, estetiği en saf ve en şık haliyle evinize taşıyoruz.</p>
+        </div>
+    </div>
 
-    <div class="section photo-bg">&nbsp;</div>
+    <div class="section photo-bg"></div>
 
-    <div class="section black-bg">&nbsp;</div>
+    <div class="section black-bg"></div>
 
 </body>
 </html>
