@@ -13,8 +13,16 @@
             color: #fff;
             font-family: sans-serif;
             overflow-y: scroll;
+            /* Scrollbar'ı gizlemek için eklemeler */
+            -ms-overflow-style: none;  /* IE ve Edge için */
+            scrollbar-width: none;     /* Firefox için */
             /* Sert geçişler için scroll snap */
             scroll-snap-type: y mandatory;
+        }
+
+        /* Chrome, Safari ve Opera için scrollbar'ı gizle */
+        body::-webkit-scrollbar {
+            display: none;
         }
 
         /* Sabit Header */
@@ -51,7 +59,6 @@
             background-repeat: no-repeat;
         }
 
-        /* Örnek fotoğraf alanları (Foto isimlerini buraya girebilirsin) */
         .photo1 { background-image: url('foto1.jpg'); }
         .photo2 { background-image: url('foto2.jpg'); }
     </style>
@@ -62,20 +69,15 @@
         <img src="header.png" alt="Header">
     </div>
 
-    <div class="section black-bg">
-        </div>
+    <div class="section black-bg"></div>
 
-    <div class="section image-bg photo1">
-        </div>
+    <div class="section image-bg photo1"></div>
 
-    <div class="section black-bg">
-        </div>
+    <div class="section black-bg"></div>
 
-    <div class="section image-bg photo2">
-        </div>
+    <div class="section image-bg photo2"></div>
 
-    <div class="section black-bg">
-        </div>
+    <div class="section black-bg"></div>
 
 </body>
 </html>
