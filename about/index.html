@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Moera | Modern Luks</title>
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400&display=swap" rel="stylesheet">
+    <title>About | Moera</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&family=Inter:wght@200;300&display=swap" rel="stylesheet">
     
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -13,7 +13,7 @@
             height: 100%;
             background-color: #000;
             color: #fff;
-            font-family: 'Lato', sans-serif;
+            font-family: 'Inter', sans-serif;
             overflow-y: scroll;
             -ms-overflow-style: none;  
             scrollbar-width: none;     
@@ -22,16 +22,27 @@
 
         body::-webkit-scrollbar { display: none; }
 
+        /* Sabit Header ve Link */
         .header-container {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             z-index: 1000;
-            background-color: #000;
+            background-color: rgba(0,0,0,0.8);
+            backdrop-filter: blur(10px);
         }
 
-        .header-container img { width: 100%; display: block; }
+        .header-container a {
+            display: block;
+            width: 100%;
+            text-decoration: none;
+        }
+
+        .header-container img { 
+            width: 100%; 
+            display: block; 
+        }
 
         .section {
             width: 100%;
@@ -40,43 +51,78 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 40px;
+            position: relative;
+            overflow: hidden;
         }
 
-        .black-bg { background-color: #000; }
+        /* Yazı Alanı ve Oklar */
+        .content-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            max-width: 1100px;
+            padding: 0 40px;
+        }
 
-        /* Yazı animasyonu */
         .content-text {
-            max-width: 700px;
             text-align: center;
             line-height: 1.8;
-            animation: elegantFade 2s ease-in-out forwards;
-        }
-
-        @keyframes elegantFade {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+            animation: softEntrance 2.5s ease-out forwards;
         }
 
         .content-text p { 
-            font-size: 1.4rem; 
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem; 
             font-weight: 300;
-            color: #e0e0e0;
+            letter-spacing: 0.02em;
+            color: rgba(255,255,255,0.9);
         }
 
-        /* Fotoya geçiş efekti */
+        /* Minimalist Oklar */
+        .premium-arrow {
+            width: 1px;
+            height: 60px;
+            background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.5), transparent);
+            position: relative;
+            opacity: 0.4;
+        }
+
+        .premium-arrow::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: -2px;
+            width: 5px;
+            height: 5px;
+            border-right: 1px solid #fff;
+            border-bottom: 1px solid #fff;
+            transform: rotate(45deg);
+        }
+
+        @keyframes softEntrance {
+            from { opacity: 0; transform: scale(0.98) translateY(10px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
+        }
+
+        /* Fotoğraf Bölümü ve Scroll Animasyonu */
         .photo-bg {
             background-image: url('moeraarka.png'); 
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            background-color: #000;
-            /* Fotoğraf bölümü için yumuşak geçiş */
-            transition: opacity 1.5s ease-in-out;
+            transition: transform 1.5s cubic-bezier(0.25, 1, 0.5, 1), filter 1.5s ease;
+            filter: brightness(0.7) scale(1.1);
+        }
+
+        /* Scroll ile bu bölüme gelince tetiklenecek efekt */
+        .section:nth-of-type(2).photo-bg {
+            filter: brightness(1) scale(1);
         }
 
         @media (max-width: 768px) {
-            .content-text p { font-size: 1.1rem; }
+            .content-wrapper { flex-direction: column; gap: 15px; }
+            .content-text p { font-size: 1.2rem; }
+            .premium-arrow { display: none; } /* Mobilde sadelik için okları gizle */
             .photo-bg { background-size: contain; }
         }
     </style>
@@ -84,18 +130,24 @@
 <body>
 
     <div class="header-container">
-        <img src="header.png" alt="Moera Logo">
+        <a href="https://moerahome.com">
+            <img src="header.png" alt="Moera Logo">
+        </a>
     </div>
 
-    <div class="section black-bg">
-        <div class="content-text">
-            <p>Moera olarak, yapilmayani yapma tutkusuyla luksu modern zamanin ruhuyla harmanliyoruz. Tasarimlarimizi sadece birer mobilya olarak degil, yasam alanlariniza ruh katacak ve anilariniza eslik edecek zamansiz parcalar olarak kurguluyoruz. Her detayina kendinden bir parca birakan ekibimizle, estetigi en saf ve en sik haliyle evinize tasiyoruz.</p>
+    <div class="section">
+        <div class="content-wrapper">
+            <div class="premium-arrow"></div>
+            <div class="content-text">
+                <p>Moera olarak, yapılmayanı yapma tutkusuyla lüksü modern zamanın ruhuyla harmanlıyoruz. Tasarımlarımızı sadece birer mobilya olarak değil, yaşam alanlarınıza ruh katacak ve anılarınıza eşlik edecek zamansız parçalar olarak kurguluyoruz. Her detayına kendinden bir parça bırakan ekibimizle, estetiği en saf ve en şık haliyle evinize taşıyoruz.</p>
+            </div>
+            <div class="premium-arrow"></div>
         </div>
     </div>
 
     <div class="section photo-bg"></div>
 
-    <div class="section black-bg"></div>
+    <div class="section"></div>
 
 </body>
 </html>
