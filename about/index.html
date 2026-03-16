@@ -13,19 +13,14 @@
             color: #fff;
             font-family: sans-serif;
             overflow-y: scroll;
-            /* Scrollbar gizleme */
+            /* Scrollbar gizleme  */
             -ms-overflow-style: none;  
             scrollbar-width: none;     
-            /* Kaydırma kilitleme */
             scroll-snap-type: y mandatory;
         }
 
-        /* Chrome, Safari ve Opera için scrollbar'ı gizle */
-        body::-webkit-scrollbar {
-            display: none;
-        }
+        body::-webkit-scrollbar { display: none; } /*  */
 
-        /* Sabit Header */
         .header-container {
             position: fixed;
             top: 0;
@@ -34,12 +29,8 @@
             z-index: 1000;
         }
 
-        .header-container img {
-            width: 100%;
-            display: block;
-        }
+        .header-container img { width: 100%; display: block; }
 
-        /* İçerik Bölümleri */
         .section {
             width: 100%;
             min-height: 100vh;
@@ -49,15 +40,22 @@
             justify-content: center;
         }
 
-        /* Siyah arka plan */
         .black-bg { background-color: #000; }
 
-        /* Fotoğraf arka planı */
+        /* Mobil uyumlu görsel alanı  */
         .photo-bg {
-            background-image: url('moeraarka.png');
-            background-size: cover;
+            background-image: url('moeraarka.jpg');
+            background-size: cover; /* Masaüstü için tam kaplama */
             background-position: center;
             background-repeat: no-repeat;
+            background-color: #000;
+        }
+
+        /* Mobilde ekran dikey olduğu için sığdır  */
+        @media (max-width: 768px) {
+            .photo-bg {
+                background-size: contain; 
+            }
         }
     </style>
 </head>
