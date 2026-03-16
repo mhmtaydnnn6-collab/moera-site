@@ -13,10 +13,10 @@
             color: #fff;
             font-family: sans-serif;
             overflow-y: scroll;
-            /* Scrollbar'ı gizlemek için eklemeler */
-            -ms-overflow-style: none;  /* IE ve Edge için */
-            scrollbar-width: none;     /* Firefox için */
-            /* Sert geçişler için scroll snap */
+            /* Scrollbar gizleme */
+            -ms-overflow-style: none;  
+            scrollbar-width: none;     
+            /* Kaydırma kilitleme */
             scroll-snap-type: y mandatory;
         }
 
@@ -49,18 +49,16 @@
             justify-content: center;
         }
 
-        /* Siyah alanlar */
+        /* Siyah arka plan */
         .black-bg { background-color: #000; }
 
-        /* Görsel alanlar */
-        .image-bg {
+        /* Fotoğraf arka planı */
+        .photo-bg {
+            background-image: url('moeraarka.png');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
         }
-
-        .photo1 { background-image: url('foto1.jpg'); }
-        .photo2 { background-image: url('foto2.jpg'); }
     </style>
 </head>
 <body>
@@ -71,11 +69,7 @@
 
     <div class="section black-bg"></div>
 
-    <div class="section image-bg photo1"></div>
-
-    <div class="section black-bg"></div>
-
-    <div class="section image-bg photo2"></div>
+    <div class="section photo-bg"></div>
 
     <div class="section black-bg"></div>
 
