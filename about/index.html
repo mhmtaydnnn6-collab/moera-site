@@ -164,22 +164,15 @@
             margin: 0 auto;
         }
 
-        .two-col.reverse { direction: rtl; }
-        .two-col.reverse > * { direction: ltr; }
+        .two-col.reverse .col-img-wrapper { order: 2; }
+        .two-col.reverse .col-text { order: 1; }
 
         .col-img-wrapper {
             position: relative;
             width: 100%;
-        }
-
-        .col-img-wrapper::before {
-            content: '';
-            position: absolute;
-            inset: -8px -8px 8px 8px;
-            border: 1px solid rgba(255,255,255,0.15);
-            border-radius: 2px;
-            z-index: 0;
-            pointer-events: none;
+            padding: 14px;
+            background: rgba(255,255,255,0.06);
+            border: 2px solid rgba(255,255,255,0.18);
         }
 
         .col-img {
@@ -188,8 +181,6 @@
             width: 100%;
             aspect-ratio: 3/4;
             object-fit: cover;
-            filter: brightness(0.88);
-            border-radius: 2px;
             display: block;
         }
 
@@ -327,14 +318,14 @@
 
             .two-col {
                 grid-template-columns: 1fr;
-                gap: 40px;
+                gap: 50px;
                 padding: 70px 24px;
-                direction: ltr !important;
             }
 
-            .two-col.reverse { direction: ltr; }
+            .two-col.reverse .col-img-wrapper { order: 0; }
+            .two-col.reverse .col-text { order: 0; }
 
-            .col-img-placeholder { aspect-ratio: 4/3; }
+            .col-img { aspect-ratio: 4/3; }
 
             .banner { padding: 80px 24px; }
 
@@ -402,8 +393,7 @@
         <div class="col-img-wrapper">
             <img src="8K5A0361.jpeg" alt="Moera" class="col-img">
         </div>
-        <div>
-            <p class="section-label">Tasarım Felsefemiz</p>
+        <div class="col-text">
             <p class="section-quote">"Her köşe, her doku, her form bir anlam taşır."</p>
             <p class="section-text">Bir mobilya yalnızca bir nesne değildir — bir yaşam biçiminin ifadesidir. Moera tasarımları, işlevselliği estetikle buluşturarak evinizin her köşesine özgün bir karakter kazandırır. Geçmişin zanaatını geleceğin vizyonuyla birleştiriyoruz.</p>
         </div>
@@ -420,7 +410,7 @@
         <div class="col-img-wrapper">
             <img src="IMG_4507.jpeg" alt="Moera" class="col-img">
         </div>
-        <div>
+        <div class="col-text">
             <p class="section-label">Malzeme ve Kalite</p>
             <p class="section-quote">"Kalite bir tercih değil, bir taahhüttür."</p>
             <p class="section-text">Doğanın en güzel malzemelerini özenle seçiyor, her ürünü titizlikle işliyoruz. Ahşabın sıcaklığından metalin zarifliğine, her malzeme Moera'nın elinde yaşam buluyor. Sürdürülebilir üretim anlayışımız, doğaya olan saygımızın somut bir yansımasıdır.</p>
