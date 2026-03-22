@@ -2,155 +2,442 @@
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About | Moera</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&family=Inter:wght@200;300&display=swap" rel="stylesheet">
-    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>About Us | Moera</title>
+    <link rel="icon" type="image/png" href="../favicon.png?v=1">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;1,300&family=Playfair+Display:wght@400;500&display=swap" rel="stylesheet">
+
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        
-        body, html {
-            height: 100%;
-            background-color: #000;
-            color: #fff;
-            font-family: 'Inter', sans-serif;
-            overflow-y: scroll;
-            -ms-overflow-style: none;  
-            scrollbar-width: none;     
-            scroll-snap-type: y mandatory;
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --black: #0a0a0a;
+            --white: #ffffff;
+            --gray: #888;
+            --light-gray: #f5f5f5;
+            --border: rgba(255,255,255,0.12);
         }
 
-        body::-webkit-scrollbar { display: none; }
+        html { scroll-behavior: smooth; }
 
-        .header-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            z-index: 1000;
-            background-color: rgba(0,0,0,0.8);
-            backdrop-filter: blur(10px);
-        }
-
-        .header-container a { display: block; width: 100%; }
-        .header-container img { width: 100%; display: block; }
-
-        .section {
-            width: 100%;
-            min-height: 100vh;
-            scroll-snap-align: start;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-        }
-
-        /* Metin ve Belirgin Oklar */
-        .content-wrapper {
-            display: flex;
-            align-items: center;
-            gap: 40px;
-            max-width: 1200px;
-            padding: 0 20px;
-        }
-
-        .content-text {
-            text-align: center;
-            line-height: 1.8;
-            flex: 1;
-        }
-
-        .content-text p { 
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 2rem; 
+        body {
+            background-color: var(--black);
+            color: var(--white);
+            font-family: 'Lato', sans-serif;
             font-weight: 300;
-            color: #fff;
+            overflow-x: hidden;
         }
 
-        /* Daha Belirgin Premium Oklar */
-        .premium-arrow {
-            width: 2px;
-            height: 100px;
-            background: linear-gradient(to bottom, transparent, #fff, transparent);
+        /* ── NAV ── */
+        nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 24px 40px;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.85) 0%, transparent 100%);
+        }
+
+        .nav-logo {
+            font-family: 'Lato', sans-serif;
+            font-weight: 700;
+            font-size: 18px;
+            letter-spacing: 4px;
+            text-decoration: none;
+            color: var(--white);
+            text-transform: uppercase;
+        }
+
+        .nav-back {
+            font-size: 11px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.6);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: color 0.3s;
+        }
+
+        .nav-back:hover { color: var(--white); }
+
+        .nav-back svg { width: 16px; height: 16px; }
+
+        /* ── HERO ── */
+        .hero {
             position: relative;
-            box-shadow: 0 0 10px rgba(255,255,255,0.3);
+            height: 100vh;
+            min-height: 600px;
+            display: flex;
+            align-items: flex-end;
+            padding: 80px 40px;
+            overflow: hidden;
         }
 
-        .premium-arrow::after {
-            content: '';
+        .hero-bg {
             position: absolute;
-            bottom: -5px;
-            left: -4px;
-            width: 10px;
-            height: 10px;
-            border-right: 2px solid #fff;
-            border-bottom: 2px solid #fff;
-            transform: rotate(45deg);
-        }
-
-        /* Fotoğraf Bölümü ve Animasyon */
-        .photo-bg {
-            background-image: url('moeraarka.png'); 
+            inset: 0;
+            background-image: url('../post.png');
             background-size: cover;
             background-position: center;
-            background-repeat: no-repeat;
-            opacity: 0;
-            transform: scale(1.1);
-            transition: all 1.5s cubic-bezier(0.2, 1, 0.3, 1);
+            filter: brightness(0.4);
+            z-index: 0;
         }
 
-        /* Animasyon Tetiklendiğinde */
-        .photo-bg.reveal {
-            opacity: 1;
-            transform: scale(1);
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 700px;
         }
 
+        .hero-label {
+            font-size: 10px;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.5);
+            margin-bottom: 20px;
+        }
+
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(42px, 7vw, 90px);
+            font-weight: 400;
+            line-height: 1.05;
+            margin-bottom: 30px;
+        }
+
+        .hero-desc {
+            font-size: 15px;
+            line-height: 1.8;
+            color: rgba(255,255,255,0.7);
+            max-width: 500px;
+        }
+
+        /* ── SECTIONS ── */
+        section {
+            padding: 100px 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-label {
+            font-size: 10px;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.4);
+            margin-bottom: 16px;
+        }
+
+        .section-quote {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(20px, 3vw, 32px);
+            font-weight: 400;
+            font-style: italic;
+            line-height: 1.5;
+            border-left: 1px solid rgba(255,255,255,0.3);
+            padding-left: 32px;
+            color: rgba(255,255,255,0.85);
+            margin-bottom: 40px;
+        }
+
+        .section-text {
+            font-size: 15px;
+            line-height: 1.9;
+            color: rgba(255,255,255,0.6);
+            max-width: 680px;
+        }
+
+        /* ── TWO COL ── */
+        .two-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+            padding: 100px 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .two-col.reverse { direction: rtl; }
+        .two-col.reverse > * { direction: ltr; }
+
+        .col-img {
+            width: 100%;
+            aspect-ratio: 3/4;
+            object-fit: cover;
+            filter: brightness(0.85);
+        }
+
+        .col-img-placeholder {
+            width: 100%;
+            aspect-ratio: 3/4;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        /* ── DIVIDER ── */
+        .divider {
+            width: 100%;
+            height: 1px;
+            background: rgba(255,255,255,0.08);
+            margin: 0 40px;
+            width: calc(100% - 80px);
+        }
+
+        /* ── FULL WIDTH BANNER ── */
+        .banner {
+            padding: 120px 40px;
+            text-align: center;
+            background: rgba(255,255,255,0.03);
+            border-top: 1px solid rgba(255,255,255,0.06);
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+        }
+
+        .banner-quote {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(24px, 4vw, 52px);
+            font-weight: 400;
+            line-height: 1.3;
+            max-width: 800px;
+            margin: 0 auto 20px;
+        }
+
+        .banner-source {
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.4);
+        }
+
+        /* ── VALUES ── */
+        .values {
+            padding: 100px 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1px;
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.08);
+            margin-top: 60px;
+        }
+
+        .value-item {
+            padding: 50px 40px;
+            background: var(--black);
+        }
+
+        .value-number {
+            font-size: 11px;
+            letter-spacing: 3px;
+            color: rgba(255,255,255,0.3);
+            margin-bottom: 24px;
+        }
+
+        .value-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 22px;
+            font-weight: 400;
+            margin-bottom: 16px;
+        }
+
+        .value-text {
+            font-size: 13px;
+            line-height: 1.8;
+            color: rgba(255,255,255,0.5);
+        }
+
+        /* ── FOOTER ── */
+        footer {
+            padding: 60px 40px;
+            border-top: 1px solid rgba(255,255,255,0.08);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .footer-logo {
+            font-weight: 700;
+            font-size: 14px;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .footer-links a {
+            font-size: 11px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.4);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover { color: var(--white); }
+
+        .footer-copy {
+            font-size: 11px;
+            color: rgba(255,255,255,0.25);
+            letter-spacing: 1px;
+        }
+
+        /* ── MOBILE ── */
         @media (max-width: 768px) {
-            .content-wrapper { flex-direction: column; }
-            .content-text p { font-size: 1.3rem; }
-            .premium-arrow { height: 60px; width: 1px; }
-            .photo-bg { background-size: contain; }
+            nav { padding: 20px 24px; }
+
+            .hero { padding: 60px 24px; }
+
+            .hero-title { font-size: clamp(36px, 10vw, 60px); }
+
+            section { padding: 70px 24px; }
+
+            .two-col {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                padding: 70px 24px;
+                direction: ltr !important;
+            }
+
+            .two-col.reverse { direction: ltr; }
+
+            .col-img-placeholder { aspect-ratio: 4/3; }
+
+            .banner { padding: 80px 24px; }
+
+            .values { padding: 70px 24px; }
+
+            .values-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .value-item { padding: 40px 28px; }
+
+            .divider { margin: 0 24px; width: calc(100% - 48px); }
+
+            footer {
+                padding: 40px 24px;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 24px;
+            }
+
+            .footer-links { flex-wrap: wrap; gap: 16px; }
+        }
+
+        @media (max-width: 480px) {
+            .hero-desc { font-size: 14px; }
+            .section-text { font-size: 14px; }
+            .section-quote { font-size: 18px; padding-left: 20px; }
         }
     </style>
 </head>
 <body>
 
-    <div class="header-container">
-        <a href="https://moerahome.com">
-            <img src="header.png" alt="Moera Logo">
+    <!-- NAV -->
+    <nav>
+        <a href="https://moerahome.com" class="nav-logo">Moera</a>
+        <a href="https://moerahome.com" class="nav-back">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M19 12H5M12 5l-7 7 7 7"/>
+            </svg>
+            Ana Sayfa
         </a>
-    </div>
+    </nav>
 
-    <div class="section">
-        <div class="content-wrapper">
-            <div class="premium-arrow"></div>
-            <div class="content-text">
-                <p>Moera olarak, yapılmayanı yapma tutkusuyla lüksü modern zamanın ruhuyla harmanlıyoruz. Tasarımlarımızı sadece birer mobilya olarak değil, yaşam alanlarınıza ruh katacak ve anılarınıza eşlik edecek zamansız parçalar olarak kurguluyoruz. Her detayına kendinden bir parça bırakan ekibimizle, estetiği en saf ve en şık haliyle evinize taşıyoruz.</p>
-            </div>
-            <div class="premium-arrow"></div>
+    <!-- HERO -->
+    <div class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-content">
+            <p class="hero-label">Hakkımızda</p>
+            <h1 class="hero-title">Yapılmayanı<br>Yapmak.</h1>
+            <p class="hero-desc">Moera olarak, lüksü modern zamanın ruhuyla harmanlıyoruz. Her tasarım, yaşam alanlarınıza ruh katacak ve anılarınıza eşlik edecek zamansız bir parça.</p>
         </div>
     </div>
 
-    <div class="section photo-bg" id="photoSection"></div>
+    <!-- BÖLÜM 1 -->
+    <section>
+        <p class="section-label">Vizyonumuz</p>
+        <p class="section-quote">"Tasarımlarımızı sadece birer mobilya olarak değil, yaşam alanlarınıza ruh katacak zamansız parçalar olarak kurguluyoruz."</p>
+        <p class="section-text">Moera, yapılmayanı yapma tutkusuyla lüksü modern zamanın ruhuyla harmanlayan bir mobilya ve dekorasyon markasıdır. Her detayına kendinden bir parça bırakan ekibimizle, estetiği en saf ve en şık haliyle evinize taşıyoruz.</p>
+    </section>
 
-    <div class="section"></div>
+    <div class="divider"></div>
 
-    <script>
-        // Scroll takibi yaparak animasyonu her girişte tetikleme
-        const photoSection = document.getElementById('photoSection');
-        
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    photoSection.classList.add('reveal');
-                } else {
-                    photoSection.classList.remove('reveal'); // Bölümden çıkınca animasyonu sıfırla
-                }
-            });
-        }, { threshold: 0.5 }); // Bölümün yarısı görünce başla
+    <!-- İKİ KOLON 1 -->
+    <div class="two-col">
+        <img src="8K5A0361.jpeg" alt="Moera" class="col-img">
+        <div>
+            <p class="section-label">Tasarım Felsefemiz</p>
+            <p class="section-quote">"Her köşe, her doku, her form bir anlam taşır."</p>
+            <p class="section-text">Bir mobilya yalnızca bir nesne değildir — bir yaşam biçiminin ifadesidir. Moera tasarımları, işlevselliği estetikle buluşturarak evinizin her köşesine özgün bir karakter kazandırır. Geçmişin zanaatını geleceğin vizyonuyla birleştiriyoruz.</p>
+        </div>
+    </div>
 
-        observer.observe(photoSection);
-    </script>
+    <!-- BANNER -->
+    <div class="banner">
+        <p class="banner-quote">"Estetiği en saf ve en şık haliyle evinize taşıyoruz."</p>
+        <p class="banner-source">— Moera Studio</p>
+    </div>
+
+    <!-- İKİ KOLON 2 -->
+    <div class="two-col reverse">
+        <img src="IMG_4507.jpeg" alt="Moera" class="col-img">
+        <div>
+            <p class="section-label">Malzeme ve Kalite</p>
+            <p class="section-quote">"Kalite bir tercih değil, bir taahhüttür."</p>
+            <p class="section-text">Doğanın en güzel malzemelerini özenle seçiyor, her ürünü titizlikle işliyoruz. Ahşabın sıcaklığından metalin zarifliğine, her malzeme Moera'nın elinde yaşam buluyor. Sürdürülebilir üretim anlayışımız, doğaya olan saygımızın somut bir yansımasıdır.</p>
+        </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- DEĞERLER -->
+    <div class="values">
+        <p class="section-label">Değerlerimiz</p>
+        <div class="values-grid">
+            <div class="value-item">
+                <p class="value-number">01</p>
+                <h3 class="value-title">Özgünlük</h3>
+                <p class="value-text">Her tasarım, kendine özgü bir kimlik taşır. Seri üretimin ötesinde, ruhu olan parçalar yaratıyoruz.</p>
+            </div>
+            <div class="value-item">
+                <p class="value-number">02</p>
+                <h3 class="value-title">Zamansızlık</h3>
+                <p class="value-text">Trendlerin gelip geçtiği bir dünyada, yıllar sonra da değerini koruyacak tasarımlar sunuyoruz.</p>
+            </div>
+            <div class="value-item">
+                <p class="value-number">03</p>
+                <h3 class="value-title">Zarafet</h3>
+                <p class="value-text">Sadeliğin içinde saklı olan güzelliği keşfediyoruz. Her detay, bütünü mükemmelleştirmek için var.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <span class="footer-logo">Moera</span>
+        <div class="footer-links">
+            <a href="https://instagram.com/moerahome" target="_blank">Instagram</a>
+            <a href="https://wa.me/905418892202" target="_blank">WhatsApp</a>
+            <a href="https://moerahome.com">Ana Sayfa</a>
+        </div>
+        <span class="footer-copy">© 2026 Moera. Tüm hakları saklıdır.</span>
+    </footer>
 
 </body>
 </html>
