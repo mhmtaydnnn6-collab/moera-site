@@ -167,11 +167,30 @@
         .two-col.reverse { direction: rtl; }
         .two-col.reverse > * { direction: ltr; }
 
+        .col-img-wrapper {
+            position: relative;
+            width: 100%;
+        }
+
+        .col-img-wrapper::before {
+            content: '';
+            position: absolute;
+            inset: -8px -8px 8px 8px;
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 2px;
+            z-index: 0;
+            pointer-events: none;
+        }
+
         .col-img {
+            position: relative;
+            z-index: 1;
             width: 100%;
             aspect-ratio: 3/4;
             object-fit: cover;
-            filter: brightness(0.85);
+            filter: brightness(0.88);
+            border-radius: 2px;
+            display: block;
         }
 
         .col-img-placeholder {
@@ -380,7 +399,9 @@
 
     <!-- İKİ KOLON 1 -->
     <div class="two-col">
-        <img src="8K5A0361.jpeg" alt="Moera" class="col-img">
+        <div class="col-img-wrapper">
+            <img src="8K5A0361.jpeg" alt="Moera" class="col-img">
+        </div>
         <div>
             <p class="section-label">Tasarım Felsefemiz</p>
             <p class="section-quote">"Her köşe, her doku, her form bir anlam taşır."</p>
@@ -396,7 +417,9 @@
 
     <!-- İKİ KOLON 2 -->
     <div class="two-col reverse">
-        <img src="IMG_4507.jpeg" alt="Moera" class="col-img">
+        <div class="col-img-wrapper">
+            <img src="IMG_4507.jpeg" alt="Moera" class="col-img">
+        </div>
         <div>
             <p class="section-label">Malzeme ve Kalite</p>
             <p class="section-quote">"Kalite bir tercih değil, bir taahhüttür."</p>
