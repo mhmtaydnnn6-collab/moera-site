@@ -66,7 +66,6 @@
         }
 
         .nav-back:hover { color: var(--white); }
-
         .nav-back svg { width: 16px; height: 16px; }
 
         /* ── HERO ── */
@@ -83,11 +82,18 @@
         .hero-bg {
             position: absolute;
             inset: 0;
-            background-image: url('../post.png');
+            background-image: url('post.png');
             background-size: cover;
             background-position: center;
             filter: brightness(0.4);
             z-index: 0;
+        }
+
+        @media (max-width: 768px) {
+            .hero-bg {
+                background-image: url('mobile.png');
+                background-position: top center;
+            }
         }
 
         .hero-content {
@@ -184,20 +190,11 @@
             display: block;
         }
 
-        .col-img-placeholder {
-            width: 100%;
-            aspect-ratio: 3/4;
-            background: rgba(255,255,255,0.05);
-            border: 1px solid rgba(255,255,255,0.1);
-        }
-
         /* ── DIVIDER ── */
         .divider {
-            width: 100%;
             height: 1px;
             background: rgba(255,255,255,0.08);
             margin: 0 40px;
-            width: calc(100% - 80px);
         }
 
         /* ── FULL WIDTH BANNER ── */
@@ -310,49 +307,55 @@
         @media (max-width: 768px) {
             nav { padding: 20px 24px; }
 
-            .hero { padding: 60px 24px; }
+            .hero {
+                padding: 40px 24px 60px;
+                min-height: 100svh;
+                align-items: flex-end;
+            }
 
             .hero-title { font-size: clamp(36px, 10vw, 60px); }
+            .hero-desc { font-size: 14px; }
 
-            section { padding: 70px 24px; }
+            section { padding: 60px 24px; }
 
             .two-col {
                 grid-template-columns: 1fr;
-                gap: 50px;
-                padding: 70px 24px;
+                gap: 40px;
+                padding: 60px 24px;
             }
 
-            .two-col.reverse .col-img-wrapper { order: 0; }
-            .two-col.reverse .col-text { order: 0; }
+            .two-col.reverse .col-img-wrapper { order: unset; }
+            .two-col.reverse .col-text { order: unset; }
 
             .col-img { aspect-ratio: 4/3; }
 
-            .banner { padding: 80px 24px; }
+            .col-img-wrapper { padding: 10px; }
 
-            .values { padding: 70px 24px; }
+            .banner { padding: 70px 24px; }
 
-            .values-grid {
-                grid-template-columns: 1fr;
-            }
+            .values { padding: 60px 24px; }
 
-            .value-item { padding: 40px 28px; }
+            .values-grid { grid-template-columns: 1fr; }
 
-            .divider { margin: 0 24px; width: calc(100% - 48px); }
+            .value-item { padding: 36px 24px; }
+
+            .divider { margin: 0 24px; }
 
             footer {
                 padding: 40px 24px;
                 flex-direction: column;
                 align-items: flex-start;
-                gap: 24px;
+                gap: 20px;
             }
 
             .footer-links { flex-wrap: wrap; gap: 16px; }
+            .footer-copy { font-size: 10px; }
         }
 
         @media (max-width: 480px) {
-            .hero-desc { font-size: 14px; }
             .section-text { font-size: 14px; }
             .section-quote { font-size: 18px; padding-left: 20px; }
+            .banner-source { font-size: 10px; }
         }
     </style>
 </head>
@@ -395,7 +398,7 @@
         </div>
         <div class="col-text">
             <p class="section-quote">"Her köşe, her doku, her form bir anlam taşır."</p>
-            <p class="section-text"> Mobilya yalnızca bir nesne değildir — bir yaşam biçiminin ifadesidir. Moera imzalı tasarımlar işlevselliği estetikle buluşturarak evinizin her köşesine özgün bir karakter kazandırır. </p>
+            <p class="section-text">Mobilya yalnızca bir nesne değildir — bir yaşam biçiminin ifadesidir. Moera imzalı tasarımlar işlevselliği estetikle buluşturarak evinizin her köşesine özgün bir karakter kazandırır.</p>
         </div>
     </div>
 
@@ -412,7 +415,7 @@
         </div>
         <div class="col-text">
             <p class="section-label">Malzeme ve Kalite</p>
-            <p class="section-quote">"Kalite bir tercih değil, bir taahhüttür."</p>
+            <p class="section-quote">"Kalite bir tercih değil, taahhüttür."</p>
             <p class="section-text">Doğanın en güzel malzemelerini özenle seçiyor, her ürünü titizlikle işliyoruz. Ahşabın sıcaklığından kumaşın zarifliğine, her malzeme Moera'nın elinde yaşam buluyor.</p>
         </div>
     </div>
