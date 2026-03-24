@@ -35,7 +35,7 @@
         }
 
         /* ══ NAV ══ */
-        nav {
+        #nav {
             position: fixed;
             top: 0; left: 0; right: 0;
             z-index: 100;
@@ -46,7 +46,7 @@
             transition: background 0.4s;
         }
 
-        nav.solid {
+        #nav.solid {
             background: rgba(8,8,8,0.97);
             backdrop-filter: blur(14px);
             border-bottom: 1px solid var(--border);
@@ -166,7 +166,6 @@
             );
         }
 
-        /* Sayaç */
         .countdown-box {
             position: absolute;
             bottom: 80px;
@@ -185,9 +184,7 @@
             color: rgba(255,255,255,0.4);
         }
 
-        .cd-digits {
-            display: flex;
-        }
+        .cd-digits { display: flex; }
 
         .cd-item {
             display: flex;
@@ -216,7 +213,6 @@
             margin-top: 5px;
         }
 
-        /* Hero sol alt */
         .hero-tagline {
             position: absolute;
             bottom: 80px;
@@ -230,7 +226,6 @@
             line-height: 1.6;
         }
 
-        /* Scroll hint */
         .scroll-hint {
             position: absolute;
             bottom: 24px;
@@ -634,7 +629,7 @@
             color: rgba(255,255,255,0.18);
         }
 
-        /* Reveal animasyonu */
+        /* Reveal */
         .reveal {
             opacity: 0;
             transform: translateY(24px);
@@ -645,7 +640,7 @@
 
         /* ══ MOBİL ══ */
         @media (max-width: 768px) {
-            nav {
+            #nav {
                 padding: calc(env(safe-area-inset-top) + 16px) 24px 16px;
                 grid-template-columns: 1fr 1fr;
             }
@@ -739,7 +734,6 @@
     <!-- HERO -->
     <section class="hero">
         <div class="hero-bg"></div>
-
         <div class="countdown-box">
             <span class="cd-label">Açılışa kalan</span>
             <div class="cd-digits">
@@ -749,9 +743,7 @@
                 <div class="cd-item"><span class="cd-num" id="seconds">00</span><span class="cd-unit">Sn</span></div>
             </div>
         </div>
-
         <p class="hero-tagline">Mobilya & Dekorasyon<br>— 2026</p>
-
         <div class="scroll-hint">
             <span>Keşfet</span>
             <div class="scroll-line"></div>
@@ -856,13 +848,13 @@
     <!-- FOOTER -->
     <footer class="reveal">
         <span class="footer-logo">Moera</span>
-        <nav class="footer-links">
+        <div class="footer-links">
             <a href="https://moerahome.com/koleksiyonlar/">Koleksiyonlar</a>
             <a href="https://moerahome.com/about/">Hakkımızda</a>
             <a href="https://moerahome.com/atolye/">Atölye</a>
             <a onclick="openModal()">İletişim</a>
             <a href="https://moerahome.com/kurumsal/">Kurumsal</a>
-        </nav>
+        </div>
         <span class="footer-copy">© 2026 Moera</span>
     </footer>
 
