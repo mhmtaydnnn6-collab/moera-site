@@ -8,366 +8,893 @@
       gtag('js', new Date());
       gtag('config', 'G-P57TV9S7NT');
     </script>
-
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Moera</title>
     <link rel="icon" type="image/png" href="favicon.png?v=1">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Lato:wght@300;400;500&display=swap" rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Lato:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
         *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
-        html, body {
-            width: 100%; height: 100%;
-            overflow: hidden;
-            background: #000;
-            font-family: 'Lato', sans-serif;
+        :root {
+            --black: #080808;
+            --white: #fff;
+            --border: rgba(255,255,255,0.12);
         }
 
-        /* ── ARKA PLAN ── */
-        .bg {
+        html { scroll-behavior: smooth; }
+
+        body {
+            background: var(--black);
+            color: var(--white);
+            font-family: 'Lato', sans-serif;
+            font-weight: 300;
+            overflow-x: hidden;
+        }
+
+        /* ══ NAV ══ */
+        nav {
             position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            padding: calc(env(safe-area-inset-top) + 20px) 48px 20px;
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            align-items: center;
+            transition: background 0.4s;
+        }
+
+        nav.solid {
+            background: rgba(8,8,8,0.97);
+            backdrop-filter: blur(14px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .nav-logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 300;
+            font-size: 20px;
+            letter-spacing: 10px;
+            text-transform: uppercase;
+            color: var(--white);
+            text-decoration: none;
+        }
+
+        .nav-center {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+
+        .nav-center a {
+            font-size: 10px;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.6);
+            text-decoration: none;
+            transition: color 0.3s;
+            cursor: pointer;
+        }
+
+        .nav-center a:hover { color: var(--white); }
+
+        .nav-end {
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        /* Hamburger */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 4px;
+        }
+
+        .hamburger span {
+            display: block;
+            width: 22px; height: 1px;
+            background: rgba(255,255,255,0.8);
+        }
+
+        /* Mobil menü */
+        .mob-menu {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(8,8,8,0.98);
+            z-index: 200;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 32px;
+        }
+
+        .mob-menu.open { display: flex; }
+
+        .mob-menu a {
+            font-size: 12px;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.65);
+            text-decoration: none;
+            transition: color 0.3s;
+            cursor: pointer;
+        }
+
+        .mob-menu a:hover { color: var(--white); }
+
+        .mob-close {
+            position: absolute;
+            top: 24px; right: 28px;
+            background: none; border: none;
+            color: rgba(255,255,255,0.5);
+            font-size: 28px;
+            cursor: pointer;
+        }
+
+        /* ══ HERO ══ */
+        .hero {
+            position: relative;
+            height: 100vh;
+            min-height: 600px;
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
             inset: 0;
             background-image: url('post.png');
             background-size: cover;
             background-position: center;
             z-index: 0;
-            transition: opacity 1.2s ease;
         }
 
-        .bg::after {
+        .hero-bg::after {
             content: '';
+            position: absolute; inset: 0;
+            background: linear-gradient(
+                to bottom,
+                rgba(0,0,0,0.5) 0%,
+                rgba(0,0,0,0.0) 40%,
+                rgba(0,0,0,0.6) 100%
+            );
+        }
+
+        /* Sayaç */
+        .countdown-box {
             position: absolute;
-            inset: 0;
-            background:
-                linear-gradient(to top, rgba(0,0,0,0.72) 0%, rgba(0,0,0,0) 45%),
-                linear-gradient(to bottom, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0) 30%);
-        }
-
-        @media (max-width: 768px) {
-            .bg { background-image: url('mobile.png'); background-position: top center; }
-        }
-
-        /* ── ÜST LOGO ── */
-        .top-bar {
-            position: fixed;
-            top: 0; left: 0; right: 0;
-            z-index: 20;
-            padding: 32px 40px;
+            bottom: 80px;
+            right: 48px;
+            z-index: 5;
             display: flex;
-            justify-content: space-between;
-            align-items: center;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 10px;
         }
 
-        .logo {
-            font-family: 'Cormorant Garamond', serif;
-            font-weight: 300;
-            font-size: 22px;
-            letter-spacing: 10px;
-            text-transform: uppercase;
-            color: rgba(255,255,255,0.9);
-            text-decoration: none;
-        }
-
-        .top-date {
-            font-size: 10px;
-            letter-spacing: 3px;
+        .cd-label {
+            font-size: 9px;
+            letter-spacing: 4px;
             text-transform: uppercase;
             color: rgba(255,255,255,0.4);
-            font-weight: 300;
         }
 
-        /* ── ORTA — SAYAÇ ── */
-        .center-block {
-            position: fixed;
-            bottom: 0; left: 0; right: 0;
-            z-index: 10;
-            padding: 0 40px calc(100px + env(safe-area-inset-bottom));
+        .cd-digits {
             display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            gap: 28px;
         }
 
-        .pre-label {
-            font-size: 10px;
-            letter-spacing: 5px;
-            text-transform: uppercase;
-            color: rgba(255,255,255,0.45);
-            font-weight: 300;
-        }
-
-        /* Sayaç — yatay, büyük rakamlar */
-        #countdown {
-            display: flex;
-            align-items: flex-end;
-            gap: 0;
-            color: white;
-        }
-
-        .countdown-item {
+        .cd-item {
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 0 28px 0 0;
-            margin-right: 28px;
-            border-right: 1px solid rgba(255,255,255,0.12);
+            padding: 0 16px;
+            border-right: 1px solid rgba(255,255,255,0.15);
         }
 
-        .countdown-item:last-child {
-            border-right: none;
-            margin-right: 0;
-            padding-right: 0;
-        }
+        .cd-item:last-child { border-right: none; padding-right: 0; }
+        .cd-item:first-child { padding-left: 0; }
 
-        .countdown-number {
+        .cd-num {
             font-family: 'Lato', sans-serif;
             font-weight: 500;
-            font-size: clamp(52px, 7vw, 96px);
+            font-size: 28px;
             line-height: 1;
-            letter-spacing: -1px;
-            display: block;
+            letter-spacing: -0.5px;
         }
 
-        .countdown-label {
-            font-size: 9px;
+        .cd-unit {
+            font-size: 7px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.3);
+            margin-top: 5px;
+        }
+
+        /* Hero sol alt */
+        .hero-tagline {
+            position: absolute;
+            bottom: 80px;
+            left: 48px;
+            z-index: 5;
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 300;
+            font-style: italic;
+            font-size: clamp(15px, 2vw, 22px);
+            color: rgba(255,255,255,0.7);
+            line-height: 1.6;
+        }
+
+        /* Scroll hint */
+        .scroll-hint {
+            position: absolute;
+            bottom: 24px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 5;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .scroll-hint span {
+            font-size: 8px;
             letter-spacing: 3px;
             text-transform: uppercase;
-            color: rgba(255,255,255,0.35);
+            color: rgba(255,255,255,0.25);
+        }
+
+        .scroll-line {
+            width: 1px; height: 32px;
+            background: linear-gradient(to bottom, rgba(255,255,255,0.3), transparent);
+        }
+
+        /* ══ GENEL ══ */
+        .section {
+            padding: 100px 48px;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        hr.divider {
+            border: none;
+            border-top: 1px solid var(--border);
+        }
+
+        .eyebrow {
+            font-size: 9px;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.3);
+            margin-bottom: 20px;
+        }
+
+        .big-title {
+            font-family: 'Cormorant Garamond', serif;
             font-weight: 300;
-            margin-top: 8px;
-            display: block;
+            font-size: clamp(30px, 4vw, 56px);
+            line-height: 1.1;
+            margin-bottom: 24px;
         }
 
-        /* ── ALT BUTONLAR ── */
-        .bottom-bar {
-            position: fixed;
-            bottom: 0; left: 0; right: 0;
-            z-index: 20;
-            padding: 0 40px calc(36px + env(safe-area-inset-bottom));
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
+        .body-text {
+            font-size: 14px;
+            line-height: 2;
+            color: rgba(255,255,255,0.5);
+            max-width: 580px;
         }
 
-        /* Sol: Bildirim */
-        .icon-btn {
-            width: 44px;
-            height: 44px;
-            border: 1px solid rgba(255,255,255,0.18);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            background: rgba(0,0,0,0.2);
-        }
-
-        .icon-btn:hover {
-            border-color: rgba(255,255,255,0.5);
-            background: rgba(255,255,255,0.08);
-        }
-
-        /* Orta: About Us */
-        .about-btn {
+        .text-link {
+            display: inline-block;
+            margin-top: 28px;
             font-size: 10px;
             letter-spacing: 4px;
             text-transform: uppercase;
             color: rgba(255,255,255,0.6);
             text-decoration: none;
-            padding: 13px 36px;
-            border: 1px solid rgba(255,255,255,0.2);
-            background: rgba(0,0,0,0.25);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            transition: all 0.35s ease;
-            font-weight: 300;
-            letter-spacing: 4px;
+            border-bottom: 1px solid rgba(255,255,255,0.15);
+            padding-bottom: 3px;
+            transition: all 0.3s;
         }
 
-        .about-btn:hover {
-            border-color: rgba(255,255,255,0.55);
-            color: #fff;
-            background: rgba(255,255,255,0.07);
-        }
+        .text-link:hover { color: var(--white); border-color: rgba(255,255,255,0.5); }
 
-        /* Sağ: Sosyal ikonlar */
-        .social-group {
+        /* ══ KOLEKSİYONLAR ══ */
+        .col-header {
             display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 20px;
+            margin-bottom: 48px;
+        }
+
+        .col-header h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 300;
+            font-size: clamp(26px, 3vw, 42px);
+        }
+
+        .col-header a {
+            font-size: 9px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.4);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .col-header a:hover { color: var(--white); }
+
+        .col-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2px;
+        }
+
+        .col-card { cursor: pointer; }
+
+        .col-img {
+            width: 100%;
+            aspect-ratio: 3/4;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.5s;
+            overflow: hidden;
+        }
+
+        .col-card:hover .col-img { transform: scale(1.02); }
+
+        .col-img span {
+            font-size: 9px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.2);
+        }
+
+        .col-name {
+            padding: 14px 0 3px;
+            font-size: 12px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.75);
+        }
+
+        .col-year {
+            font-size: 11px;
+            color: rgba(255,255,255,0.3);
+        }
+
+        /* ══ HAKKIMIZDA ══ */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .about-photo {
+            padding: 14px;
+            border: 1px solid var(--border);
+            background: rgba(255,255,255,0.03);
+        }
+
+        .about-photo img {
+            width: 100%;
+            aspect-ratio: 4/5;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* ══ ALINTI ══ */
+        .quote-section {
+            padding: 110px 48px;
+            text-align: center;
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            background: rgba(255,255,255,0.015);
+        }
+
+        .quote-section p {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 300;
+            font-style: italic;
+            font-size: clamp(20px, 3.5vw, 46px);
+            line-height: 1.45;
+            max-width: 880px;
+            margin: 0 auto 18px;
+            color: rgba(255,255,255,0.88);
+        }
+
+        .quote-section small {
+            font-size: 9px;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.25);
+        }
+
+        /* ══ ATÖLYE ══ */
+        .atolye-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1px;
+            background: var(--border);
+            border: 1px solid var(--border);
+            margin-top: 48px;
+        }
+
+        .atolye-card {
+            padding: 44px 36px;
+            background: var(--black);
+            transition: background 0.3s;
+        }
+
+        .atolye-card:hover { background: rgba(255,255,255,0.025); }
+
+        .atolye-n {
+            font-size: 10px;
+            letter-spacing: 3px;
+            color: rgba(255,255,255,0.2);
+            margin-bottom: 18px;
+        }
+
+        .atolye-t {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 300;
+            font-size: 24px;
+            margin-bottom: 12px;
+        }
+
+        .atolye-d {
+            font-size: 13px;
+            line-height: 1.9;
+            color: rgba(255,255,255,0.4);
+        }
+
+        /* ══ İLETİŞİM MODAL ══ */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 500;
+            background: rgba(0,0,0,0.88);
+            backdrop-filter: blur(14px);
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-overlay.open { display: flex; }
+
+        .modal-box {
+            background: #111;
+            border: 1px solid var(--border);
+            padding: 52px 44px;
+            max-width: 400px;
+            width: 90%;
+            text-align: center;
+            position: relative;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 14px; right: 18px;
+            background: none; border: none;
+            color: rgba(255,255,255,0.35);
+            font-size: 24px;
+            cursor: pointer;
+            transition: color 0.3s;
+            line-height: 1;
+        }
+
+        .modal-close:hover { color: var(--white); }
+
+        .modal-eyebrow {
+            font-size: 9px;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.3);
+            margin-bottom: 14px;
+        }
+
+        .modal-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 300;
+            font-size: 30px;
+            margin-bottom: 8px;
+        }
+
+        .modal-sub {
+            font-size: 13px;
+            color: rgba(255,255,255,0.35);
+            margin-bottom: 32px;
+            line-height: 1.7;
+        }
+
+        .modal-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
             gap: 10px;
+            padding: 15px 24px;
+            border: 1px solid rgba(255,255,255,0.15);
+            text-decoration: none;
+            color: rgba(255,255,255,0.75);
+            font-size: 10px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            transition: all 0.3s;
         }
 
-        /* ── ANİMASYONLAR ── */
-        .anim-1 { opacity: 0; animation: riseUp 1.2s cubic-bezier(0.22,1,0.36,1) 0.1s forwards; }
-        .anim-2 { opacity: 0; animation: riseUp 1.2s cubic-bezier(0.22,1,0.36,1) 0.35s forwards; }
-        .anim-3 { opacity: 0; animation: riseUp 1.2s cubic-bezier(0.22,1,0.36,1) 0.55s forwards; }
-        .anim-4 { opacity: 0; animation: riseUp 1.2s cubic-bezier(0.22,1,0.36,1) 0.75s forwards; }
+        .modal-btn:last-child { margin-bottom: 0; }
 
-        @keyframes riseUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to   { opacity: 1; transform: translateY(0); }
+        .modal-btn:hover {
+            background: rgba(255,255,255,0.06);
+            border-color: rgba(255,255,255,0.4);
+            color: var(--white);
         }
 
-        .bg-anim {
+        /* ══ SOSYAL ══ */
+        .social-band {
+            padding: 90px 48px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 40px;
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .social-band h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 300;
+            font-size: clamp(26px, 3vw, 42px);
+            margin-bottom: 10px;
+        }
+
+        .social-band p {
+            font-size: 13px;
+            color: rgba(255,255,255,0.35);
+        }
+
+        .social-btns {
+            display: flex;
+            gap: 12px;
+            flex-shrink: 0;
+        }
+
+        .social-btn {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 13px 26px;
+            border: 1px solid rgba(255,255,255,0.15);
+            text-decoration: none;
+            color: rgba(255,255,255,0.65);
+            font-size: 10px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            transition: all 0.3s;
+        }
+
+        .social-btn:hover {
+            border-color: rgba(255,255,255,0.45);
+            color: var(--white);
+            background: rgba(255,255,255,0.04);
+        }
+
+        /* ══ FOOTER ══ */
+        footer {
+            padding: 48px 48px calc(36px + env(safe-area-inset-bottom));
+            border-top: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .footer-logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 300;
+            font-size: 17px;
+            letter-spacing: 8px;
+            text-transform: uppercase;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 28px;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            font-size: 9px;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.3);
+            text-decoration: none;
+            transition: color 0.3s;
+            cursor: pointer;
+        }
+
+        .footer-links a:hover { color: var(--white); }
+
+        .footer-copy {
+            font-size: 10px;
+            color: rgba(255,255,255,0.18);
+        }
+
+        /* Reveal animasyonu */
+        .reveal {
             opacity: 0;
-            animation: bgFade 2s ease forwards;
+            transform: translateY(24px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
         }
 
-        @keyframes bgFade {
-            from { opacity: 0; }
-            to   { opacity: 1; }
-        }
+        .reveal.on { opacity: 1; transform: none; }
 
-        /* ── MOBİL ── */
+        /* ══ MOBİL ══ */
         @media (max-width: 768px) {
-            .top-bar {
-                padding: calc(env(safe-area-inset-top) + 20px) 24px 20px;
+            nav {
+                padding: calc(env(safe-area-inset-top) + 16px) 24px 16px;
+                grid-template-columns: 1fr 1fr;
             }
-            .logo { font-size: 17px; letter-spacing: 6px; }
-            .top-date { display: none; }
+            .nav-center { display: none; }
+            .nav-logo { font-size: 16px; letter-spacing: 7px; }
+            .hamburger { display: flex; }
 
-            .center-block {
-                padding: 0 24px calc(88px + env(safe-area-inset-bottom));
-                gap: 16px;
-            }
+            .hero-bg { background-image: url('mobile.png'); background-position: top center; }
 
-            .pre-label { font-size: 9px; letter-spacing: 4px; }
+            .countdown-box { right: 24px; bottom: 70px; }
+            .cd-item { padding: 0 10px; }
+            .cd-num { font-size: 20px; }
 
-            #countdown { gap: 0; }
+            .hero-tagline { left: 24px; bottom: 70px; font-size: 13px; max-width: 180px; }
+            .scroll-hint { display: none; }
 
-            .countdown-item {
-                padding-right: 16px;
-                margin-right: 16px;
-            }
+            .section { padding: 64px 24px; }
+            .quote-section { padding: 72px 24px; }
+            .social-band { padding: 64px 24px; flex-direction: column; align-items: flex-start; }
+            .social-btns { flex-direction: column; width: 100%; }
+            .social-btn { justify-content: center; }
 
-            .countdown-number { font-size: clamp(36px, 9vw, 56px); letter-spacing: -0.5px; }
-            .countdown-label { font-size: 8px; margin-top: 5px; letter-spacing: 2px; }
+            .col-grid { grid-template-columns: 1fr 1fr; }
+            .col-img { aspect-ratio: 1/1; }
 
-            .bottom-bar {
-                padding: 0 20px calc(24px + env(safe-area-inset-bottom));
-            }
+            .about-grid { grid-template-columns: 1fr; gap: 36px; }
+            .about-photo { order: -1; }
+            .about-photo img { aspect-ratio: 4/3; }
 
-            .about-btn {
-                font-size: 9px;
-                letter-spacing: 3px;
-                padding: 11px 22px;
-            }
+            .atolye-grid { grid-template-columns: 1fr; }
+            .atolye-card { padding: 32px 24px; }
 
-            .icon-btn { width: 40px; height: 40px; }
+            footer { padding: 36px 24px calc(28px + env(safe-area-inset-bottom)); flex-direction: column; align-items: flex-start; }
         }
 
-        @media (max-width: 390px) {
-            .countdown-item { padding-right: 12px; margin-right: 12px; }
-            .countdown-number { font-size: 32px; }
-            .bottom-bar { padding: 0 16px calc(22px + env(safe-area-inset-bottom)); }
-        }
-
-        @media (max-width: 320px) {
-            .countdown-number { font-size: 27px; }
-            .countdown-item { padding-right: 10px; margin-right: 10px; }
-            .about-btn { padding: 10px 16px; font-size: 8px; }
+        @media (max-width: 400px) {
+            .cd-num { font-size: 17px; }
+            .cd-item { padding: 0 8px; }
+            .col-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
 
-    <!-- ARKA PLAN -->
-    <div class="bg bg-anim"></div>
-
-    <!-- ÜST BAR -->
-    <div class="top-bar anim-1">
-        <span class="logo">Moera</span>
-        <span class="top-date">14 . 04 . 2026</span>
+    <!-- İLETİŞİM MODAL -->
+    <div class="modal-overlay" id="contactModal">
+        <div class="modal-box">
+            <button class="modal-close" onclick="closeModal()">×</button>
+            <p class="modal-eyebrow">İletişim</p>
+            <h3 class="modal-title">Bize Ulaşın</h3>
+            <p class="modal-sub">Nasıl iletişime geçmek istersiniz?</p>
+            <a href="https://wa.me/905418892202" target="_blank" class="modal-btn">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+                WhatsApp ile Yaz
+            </a>
+            <a href="mailto:iletisim@moera.com" class="modal-btn">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                E-Posta Gönder
+            </a>
+        </div>
     </div>
 
-    <!-- SAYAÇ — Sol alt -->
-    <div class="center-block anim-2">
-        <p class="pre-label">Açılışa kalan süre</p>
-        <div id="countdown">
-            <div class="countdown-item">
-                <span class="countdown-number" id="days">00</span>
-                <span class="countdown-label">Gün</span>
+    <!-- MOBİL MENÜ -->
+    <div class="mob-menu" id="mobMenu">
+        <button class="mob-close" onclick="closeMob()">×</button>
+        <a href="https://moerahome.com/koleksiyonlar/" onclick="closeMob()">Koleksiyonlar</a>
+        <a href="https://moerahome.com/about/" onclick="closeMob()">Hakkımızda</a>
+        <a href="https://moerahome.com/atolye/" onclick="closeMob()">Atölye</a>
+        <a onclick="closeMob(); openModal()">İletişim</a>
+        <a href="https://instagram.com/moerahome" target="_blank" onclick="closeMob()">Sosyal Medya</a>
+        <a href="https://moerahome.com/kurumsal/" onclick="closeMob()">Kurumsal</a>
+    </div>
+
+    <!-- NAV -->
+    <nav id="nav">
+        <a href="/" class="nav-logo">Moera</a>
+        <ul class="nav-center">
+            <li><a href="https://moerahome.com/koleksiyonlar/">Koleksiyonlar</a></li>
+            <li><a href="https://moerahome.com/about/">Hakkımızda</a></li>
+            <li><a href="https://moerahome.com/atolye/">Atölye</a></li>
+            <li><a onclick="openModal()">İletişim</a></li>
+            <li><a href="https://moerahome.com/kurumsal/">Kurumsal</a></li>
+        </ul>
+        <div class="nav-end">
+            <button class="hamburger" onclick="openMob()">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-bg"></div>
+
+        <div class="countdown-box">
+            <span class="cd-label">Açılışa kalan</span>
+            <div class="cd-digits">
+                <div class="cd-item"><span class="cd-num" id="days">00</span><span class="cd-unit">Gün</span></div>
+                <div class="cd-item"><span class="cd-num" id="hours">00</span><span class="cd-unit">Saat</span></div>
+                <div class="cd-item"><span class="cd-num" id="minutes">00</span><span class="cd-unit">Dk</span></div>
+                <div class="cd-item"><span class="cd-num" id="seconds">00</span><span class="cd-unit">Sn</span></div>
             </div>
-            <div class="countdown-item">
-                <span class="countdown-number" id="hours">00</span>
-                <span class="countdown-label">Saat</span>
+        </div>
+
+        <p class="hero-tagline">Mobilya & Dekorasyon<br>— 2026</p>
+
+        <div class="scroll-hint">
+            <span>Keşfet</span>
+            <div class="scroll-line"></div>
+        </div>
+    </section>
+
+    <!-- KOLEKSİYONLAR -->
+    <div class="section reveal">
+        <div class="col-header">
+            <h2>Koleksiyonlar</h2>
+            <a href="https://moerahome.com/koleksiyonlar/">Tümünü Gör →</a>
+        </div>
+        <div class="col-grid">
+            <div class="col-card">
+                <div class="col-img"><span>Yakında</span></div>
+                <p class="col-name">Koleksiyon I</p>
+                <p class="col-year">2026</p>
             </div>
-            <div class="countdown-item">
-                <span class="countdown-number" id="minutes">00</span>
-                <span class="countdown-label">Dakika</span>
+            <div class="col-card">
+                <div class="col-img"><span>Yakında</span></div>
+                <p class="col-name">Koleksiyon II</p>
+                <p class="col-year">2026</p>
             </div>
-            <div class="countdown-item">
-                <span class="countdown-number" id="seconds">00</span>
-                <span class="countdown-label">Saniye</span>
+            <div class="col-card">
+                <div class="col-img"><span>Yakında</span></div>
+                <p class="col-name">Koleksiyon III</p>
+                <p class="col-year">2026</p>
             </div>
         </div>
     </div>
 
-    <!-- ALT BAR -->
-    <div class="bottom-bar anim-3">
+    <hr class="divider">
 
-        <!-- Sol: Bildirim -->
-        <a href="https://moerahome.com/notification/" class="icon-btn" title="Bildirimler">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.75)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
-                <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
-            </svg>
-        </a>
+    <!-- HAKKIMIZDA -->
+    <div class="section reveal">
+        <div class="about-grid">
+            <div>
+                <p class="eyebrow">Hakkımızda</p>
+                <h2 class="big-title">Yapılmayanı<br>Yapmak.</h2>
+                <p class="body-text">Moera olarak, lüksü modern zamanın ruhuyla harmanlıyoruz. Tasarımlarımızı sadece birer mobilya olarak değil, yaşam alanlarınıza ruh katacak ve anılarınıza eşlik edecek zamansız parçalar olarak kurguluyoruz.</p>
+                <a href="https://moerahome.com/about/" class="text-link">Devamını Oku</a>
+            </div>
+            <div class="about-photo">
+                <img src="8K5A0361.jpeg" alt="Moera">
+            </div>
+        </div>
+    </div>
 
-        <!-- Orta: About Us -->
-        <a href="https://moerahome.com/about/" class="about-btn">About Us</a>
+    <!-- ALINTI -->
+    <div class="quote-section reveal">
+        <p>"Estetiği en saf ve en şık haliyle evinize taşıyoruz."</p>
+        <small>— Moera Studio</small>
+    </div>
 
-        <!-- Sağ: Sosyal -->
-        <div class="social-group anim-4">
-            <a href="https://instagram.com/moerahome" class="icon-btn" target="_blank" title="Instagram">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.75)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
-                    <circle cx="12" cy="12" r="4"/>
-                    <circle cx="17.5" cy="6.5" r="0.5" fill="rgba(255,255,255,0.75)" stroke="none"/>
-                </svg>
+    <!-- ATÖLYE -->
+    <div class="section reveal">
+        <p class="eyebrow">Atölye</p>
+        <h2 class="big-title">Zanaatın Özü.</h2>
+        <p class="body-text">Her parça, yetenekli ellerimizin titiz işçiliğiyle hayat buluyor. Geleneksel zanaatı modern teknolojiyle buluşturarak özgün bir dil yaratıyoruz.</p>
+        <div class="atolye-grid">
+            <div class="atolye-card">
+                <p class="atolye-n">01</p>
+                <h3 class="atolye-t">Tasarım</h3>
+                <p class="atolye-d">Her tasarım, işlevsellik ve estetik arasındaki hassas dengeyi gözetilerek hayata geçirilir.</p>
+            </div>
+            <div class="atolye-card">
+                <p class="atolye-n">02</p>
+                <h3 class="atolye-t">Malzeme</h3>
+                <p class="atolye-d">Doğanın en özel malzemelerini özenle seçiyor, her ürünü kalıcı bir değer olarak tasarlıyoruz.</p>
+            </div>
+            <div class="atolye-card">
+                <p class="atolye-n">03</p>
+                <h3 class="atolye-t">Üretim</h3>
+                <p class="atolye-d">Geleneksel zanaat ile modern teknolojiyi birleştiren atölyemizde her parça özenle üretilir.</p>
+            </div>
+            <div class="atolye-card">
+                <p class="atolye-n">04</p>
+                <h3 class="atolye-t">Teslimat</h3>
+                <p class="atolye-d">Ürünleriniz özel ambalajıyla kapınıza ulaşır. Her detay son ana kadar korunur.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- SOSYAL MEDYA -->
+    <div class="social-band reveal">
+        <div>
+            <h2>Sosyal Medya</h2>
+            <p>@moerahome — Bizi takip edin</p>
+        </div>
+        <div class="social-btns">
+            <a href="https://instagram.com/moerahome" target="_blank" class="social-btn">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/></svg>
+                Instagram'ı Takip Et
             </a>
-            <a href="https://wa.me/905418892202" class="icon-btn" target="_blank" title="WhatsApp">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.75)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
-                </svg>
+            <a href="https://moerahome.com/notification/" class="social-btn">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+                Bildirim Al
             </a>
         </div>
-
     </div>
+
+    <!-- FOOTER -->
+    <footer class="reveal">
+        <span class="footer-logo">Moera</span>
+        <nav class="footer-links">
+            <a href="https://moerahome.com/koleksiyonlar/">Koleksiyonlar</a>
+            <a href="https://moerahome.com/about/">Hakkımızda</a>
+            <a href="https://moerahome.com/atolye/">Atölye</a>
+            <a onclick="openModal()">İletişim</a>
+            <a href="https://moerahome.com/kurumsal/">Kurumsal</a>
+        </nav>
+        <span class="footer-copy">© 2026 Moera</span>
+    </footer>
 
     <script>
-        const countdownDate = new Date("April 14, 2026 00:00:00").getTime();
-
-        function updateCountdown() {
-            const now      = new Date().getTime();
-            const distance = countdownDate - now;
-
-            if (distance < 0) {
-                document.getElementById("countdown").innerHTML =
-                    "<p style='font-family:Cormorant Garamond,serif;font-weight:300;font-size:clamp(32px,5vw,64px);letter-spacing:6px;color:white;text-transform:uppercase;'>Moera</p>";
-                return;
-            }
-
-            const d = Math.floor(distance / 86400000);
-            const h = Math.floor((distance % 86400000) / 3600000);
-            const m = Math.floor((distance % 3600000) / 60000);
-            const s = Math.floor((distance % 60000) / 1000);
-
-            document.getElementById("days").innerText    = String(d).padStart(2, '0');
-            document.getElementById("hours").innerText   = String(h).padStart(2, '0');
-            document.getElementById("minutes").innerText = String(m).padStart(2, '0');
-            document.getElementById("seconds").innerText = String(s).padStart(2, '0');
+        const target = new Date("April 14, 2026 00:00:00").getTime();
+        function tick() {
+            const d = target - Date.now();
+            if (d < 0) return;
+            document.getElementById('days').textContent    = String(Math.floor(d/86400000)).padStart(2,'0');
+            document.getElementById('hours').textContent   = String(Math.floor((d%86400000)/3600000)).padStart(2,'0');
+            document.getElementById('minutes').textContent = String(Math.floor((d%3600000)/60000)).padStart(2,'0');
+            document.getElementById('seconds').textContent = String(Math.floor((d%60000)/1000)).padStart(2,'0');
         }
+        setInterval(tick, 1000); tick();
 
-        setInterval(updateCountdown, 1000);
-        updateCountdown();
+        window.addEventListener('scroll', () => {
+            document.getElementById('nav').classList.toggle('solid', window.scrollY > 60);
+        }, { passive: true });
+
+        const io = new IntersectionObserver(entries => {
+            entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('on'); io.unobserve(e.target); } });
+        }, { threshold: 0.08 });
+        document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+        function openModal()  { document.getElementById('contactModal').classList.add('open'); }
+        function closeModal() { document.getElementById('contactModal').classList.remove('open'); }
+        document.getElementById('contactModal').addEventListener('click', function(e) {
+            if (e.target === this) closeModal();
+        });
+
+        function openMob()  { document.getElementById('mobMenu').classList.add('open'); }
+        function closeMob() { document.getElementById('mobMenu').classList.remove('open'); }
     </script>
-
 </body>
 </html>
